@@ -1,0 +1,34 @@
+---
+title: System Fields
+position: 10
+category: Schema
+---
+
+All default, and custom content types come with some managed system fields. These fields reflect certain states of your content, such as when it was last updated, or published at.
+
+## Default fields
+
+| Field         | Type        | Description                                        |
+| ------------- | ----------- | -------------------------------------------------- |
+| `id`          | `Integer!`  | Unique for each content entry                      |
+| `createdAt`   | `DateTime!` | Timestamp for when the content entry was created   |
+| `updatedAt`   | `DateTime!` | Timestamp for when the content entry was updated   |
+| `publishedAt` | `DateTime!` | Timestamp for when the content entry was published |
+
+## Asset fields
+
+Since the Asset model is included with every project, it also comes with some predefined fields, as well as all of the system fields above.
+
+The Asset field type has all of the [default fields](/schema/system-fields#default-fields), as well as:
+
+| Field      | Type      | Description                                                                            |
+| ---------- | --------- | -------------------------------------------------------------------------------------- |
+| `url`      | `String!` | The URL of the asset, with any [transformations](/content-api/assets#transformations). |
+| `handle`   | `String!` | The file handle.                                                                       |
+| `fileName` | `String!` | The document file name that was uploaded.                                              |
+| `height`   | `Float`   | The height of the file (for images only).                                              |
+| `width`    | `Float`   | The width of the file (for images only).                                               |
+| `size`     | `Float`   | The total file size.                                                                   |
+| `mimeType` | `String`  | The mime type of the file.                                                             |
+
+These fields are localized by default. Learn more about [Localization](/content-api/localization).

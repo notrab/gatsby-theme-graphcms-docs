@@ -1,0 +1,44 @@
+---
+title: Errors
+category: Overview
+position: 3
+---
+
+GraphCMS uses conventional HTTP responses codes when returning API requests.
+
+Codes in the 2xx range refer to a successful request, whereas responses in the 4xx range indicate there was an error due to the information you provided, such as invalid [query arguments](content-api/queries#query-arguments), or [auth](/authorization) token.
+
+| Code  | Description                                                       |
+| ----- | ----------------------------------------------------------------- |
+| `200` | OK - Successful response                                          |
+| `400` | Bad request - Typically due to invalid query arguments            |
+| `401` | Unauthorized - Usually no valid Permanent Auth Token was provided |
+| `404` | Not Found - Typically invalid endpoint or environment requested   |
+| `429` | Too Many Requests - You're making too many requests, slow down    |
+| `500` | Internal Server Error - Something went wrong our side             |
+
+A typical GraphQL error will look like the below. The format of the error is typical for any `400` query or mutation request.
+
+```graphql
+{
+  "errors": [
+    {
+      "message": "input:1: Field \"idd\" is not defined by type PostWhereInput. Did you mean id?\n"
+    }
+  ],
+  "data": null,
+  "extensions": {
+    "requestId": "ckff8k1tc0nsg0150cssdkzxm"
+  }
+}
+```
+
+It's clear from the error above that the field `idd` is not part of the [Input Type](schema/input-types).
+
+<Alert type="info">
+
+
+GraphCMS will also return the `requestId` which can be used when requesting support.
+
+</Alert>
+

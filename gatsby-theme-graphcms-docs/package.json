@@ -1,0 +1,15 @@
+{
+  "name": "gatsby-theme-knowledge-base",
+  "version": "1.0.0",
+  "dependencies": {
+    "@mdx-js/mdx": "1.6.18",
+    "@mdx-js/react": "1.6.18",
+    "gatsby-plugin-mdx": "1.2.48",
+    "gatsby-source-filesystem": "2.3.35"
+  },
+  "devDependencies": {
+    "gatsby": "2.24.80",
+    "react": "16.14.0",
+    "react-dom": "16.14.0"
+  }
+}

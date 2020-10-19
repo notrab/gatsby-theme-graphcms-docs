@@ -1,0 +1,13 @@
+{
+  "private": true,
+  "workspaces": [
+    "demo",
+    "gatsby-theme-knowledge-base"
+  ],
+  "scripts": {
+    "build": "yarn workspace demo build",
+    "clean": "yarn workspace demo clean",
+    "dev": "yarn workspace demo dev",
+    "serve": "yarn workspace demo serve"
+  }
+}
