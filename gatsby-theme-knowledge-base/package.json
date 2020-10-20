@@ -4,8 +4,15 @@
   "dependencies": {
     "@mdx-js/mdx": "1.6.18",
     "@mdx-js/react": "1.6.18",
+    "@tailwindcss/typography": "0.2.0",
+    "classcat": "4.1.0",
     "gatsby-plugin-mdx": "1.2.48",
-    "gatsby-source-filesystem": "2.3.35"
+    "gatsby-plugin-postcss": "3.0.3",
+    "gatsby-remark-autolink-headers": "2.3.15",
+    "gatsby-source-filesystem": "2.3.35",
+    "mdx-utils": "0.2.0",
+    "prism-react-renderer": "1.1.1",
+    "tailwindcss": "1.9.5"
   },
   "devDependencies": {
     "gatsby": "2.24.80",

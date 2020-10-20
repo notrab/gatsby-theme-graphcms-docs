@@ -1,0 +1,62 @@
+---
+title: Ordering
+position: 17
+---
+
+When fetching multiple entries you can use the `orderBy` argument to define the order of the returned records.
+
+You can order results by all [System Fields](/schema/system-fields#asset-fields), and any non-relational custom field you define in your model, either ascending, or descending.
+
+## Order by types
+
+| Input Type         | Description                              |
+| ------------------ | ---------------------------------------- |
+| `[fieldName]_ASC`  | Order results by `fieldName` ascending.  |
+| `[fieldName]_DESC` | Order results by `fieldName` descending. |
+
+<code-group>
+  <code-block label="ASC" active>
+
+
+```graphql
+{
+  posts(orderBy: createdAt_ASC) {
+    id
+    createdAt
+  }
+}
+```
+
+  </code-block>
+  <code-block label="DESC">
+
+
+```graphql
+{
+  posts(orderBy: createdAt_DESC) {
+    id
+    createdAt
+  }
+}
+```
+
+  </code-block>
+</code-group>
+
+
+## Nested ordering
+
+You can also use the `orderBy` with any nested relations. For example, let's imagine our post has a `authors` relation. The same `orderBy` rules apply.
+
+```graphql
+{
+  posts {
+    id
+    createdAt
+    authors(orderBy: createdAt_DESC) {
+      id
+      createdAt
+    }
+  }
+}
+```

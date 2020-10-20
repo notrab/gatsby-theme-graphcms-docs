@@ -1,0 +1,34 @@
+---
+title: Environments
+position: 7
+---
+
+Safely work on isolated instances of your project with environments. Environments are perfect when you want to make changes to your schema, and test out new content types without breaking your production implementation.
+
+Depending on your current user role, and payment plan, you can manage your environments from your project settings.
+
+Users, Roles & Permissions, Permanent Auth Tokens, and billing will not be cloned between projects.
+
+Each environment has its own API endpoint, with the `alias` of the environment appended to the URL.
+
+API endpoints for both `master` and `dev` environments would follow the format of:
+
+<code-group>
+  <code-block label="Master" active>
+
+
+```bash
+https://region.graphcms.com/v2/projectId/master
+```
+
+  </code-block>
+  <code-block label="Dev">
+
+
+```bash
+https://region.graphcms.com/v2/projectId/dev
+```
+
+  </code-block>
+</code-group>
+

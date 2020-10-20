@@ -1,0 +1,127 @@
+---
+title: Webhooks
+position: 6
+---
+
+Use GraphCMS webhooks to get notified about events that happen in your project.
+
+## Triggers
+
+Triggers can be configured to listen to one or more content model, stage, and action events.
+
+| Trigger       |                                                                            |
+| ------------- | -------------------------------------------------------------------------- |
+| Content Model | All models, including `Asset`                                              |
+| Stage         | Draft, Published, and [custom content stages](/content-api/content-stages) |
+| Action        | Create, Update, Delete, Publish, and Unpublish                             |
+
+## Receiving a webhook
+
+Once an event occurs, data is sent as JSON in a POST requests body to the configured URL. The contents of the request always contain the `operation`, and `data` of the event.
+
+Each event will also contain the `__typename`, `stage`, `localizations`, as well as the full content entry. The `id` and `__typename` of the related entries are also included.
+
+The snapshot of the current stage is only sent in the webhook body. This means that:
+
+- Create, Update, and Delete actions only send the draft version.
+- Publishing, and Unpublishing actions only send the published version.
+
+## Example payload
+
+Below is an example of both `DRAFT`, and `PUBLISHED` content stage events.
+
+In the examples below we have a `Post` model.
+
+<code-group>
+  <code-block label="Draft" active>
+
+
+```json
+{
+  "operation": "create",
+  "data": {
+    "__typename": "Post",
+    "content": "Start using webhooks today, for free.",
+    "createdAt": "2020-09-16T13:11:57.345138+00:00",
+    "description": "This is a description",
+    "id": "ckf5emloo021s0161iqos7enp",
+    "image": {
+      "__typename": "Asset",
+      "id": "ckf5em5hc02100157x5n00lwb"
+    },
+    "localizations": [
+      {
+        "locale": "en",
+        "title": "GraphCMS Webhook Payload Changes"
+      }
+    ],
+    "publishedAt": null,
+    "stage": "DRAFT",
+    "updatedAt": "2020-09-16T13:11:57.345138+00:00"
+  }
+}
+```
+
+  </code-block>
+  <code-block label="Published">
+
+
+```json
+{
+  "operation": "publish",
+  "data": {
+    "__typename": "Post",
+    "content": "Start using webhooks today, for free.",
+    "createdAt": "2020-09-16T13:11:57.345138+00:00",
+    "description": "This is a description",
+    "id": "ckf5emloo021s0161iqos7enp",
+    "image": {
+      "__typename": "Asset",
+      "id": "ckf5em5hc02100157x5n00lwb"
+    },
+    "localizations": [
+      {
+        "locale": "en",
+        "title": "GraphCMS Webhook Payload Changes!"
+      }
+    ],
+    "publishedAt": "2020-09-16T13:14:12.782833+00:00",
+    "stage": "PUBLISHED",
+    "updatedAt": "2020-09-16T13:13:50.424325+00:00"
+  }
+}
+```
+
+  </code-block>
+  <code-block label="Custom Stage (QA)">
+
+
+```json
+{
+  "operation": "publish",
+  "data": {
+    "__typename": "Post",
+    "content": "Start using webhooks today, for free.",
+    "createdAt": "2020-09-16T13:11:57.345138+00:00",
+    "description": "This is a description",
+    "id": "ckf5emloo021s0161iqos7enp",
+    "image": {
+      "__typename": "Asset",
+      "id": "ckf5em5hc02100157x5n00lwb"
+    },
+    "localizations": [
+      {
+        "locale": "en",
+        "title": "GraphCMS Webhook Payload Changes!"
+      }
+    ],
+    "publishedAt": "2020-09-16T13:14:12.782833+00:00",
+    "stage": "QA",
+    "updatedAt": "2020-09-16T13:13:50.424325+00:00"
+  }
+}
+```
+
+  </code-block>
+</code-group>
+

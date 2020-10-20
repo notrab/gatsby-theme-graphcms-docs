@@ -5,7 +5,10 @@ const { createFilePath } = require(`gatsby-source-filesystem`);
 const withThemeOptions = require("./theme-options");
 
 exports.createPages = async ({ actions: { createPage }, graphql }) => {
-  const { data, errors } = await graphql(`
+  const {
+    data: { publicFiles, hiddenFiles, navItems },
+    errors,
+  } = await graphql(`
     fragment Page on File {
       id
       childMdx {
@@ -15,6 +18,7 @@ exports.createPages = async ({ actions: { createPage }, graphql }) => {
         frontmatter {
           title
           disableTOC
+          disablePagination
         }
         body
         headings {
@@ -24,20 +28,68 @@ exports.createPages = async ({ actions: { createPage }, graphql }) => {
       }
     }
 
+    fragment PaginationPage on File {
+      childMdx {
+        fields {
+          slug
+        }
+        frontmatter {
+          title
+        }
+      }
+    }
+
     {
-      allFile(
-        filter: { extension: { in: ["md", "mdx"] } }
-        sort: { fields: childMdx___frontmatter___position }
+      publicFiles: allFile(
+        filter: {
+          extension: { in: ["md", "mdx"] }
+          childMdx: { frontmatter: { hidden: { ne: true } } }
+        }
+        sort: { fields: childMdx___frontmatter___position, order: ASC }
       ) {
         edges {
           node {
             ...Page
           }
           next {
-            ...Page
+            ...PaginationPage
           }
           previous {
-            ...Page
+            ...PaginationPage
+          }
+        }
+      }
+      hiddenFiles: allFile(
+        filter: {
+          extension: { in: ["md", "mdx"] }
+          childMdx: { frontmatter: { hidden: { eq: true } } }
+        }
+      ) {
+        nodes {
+          ...Page
+        }
+      }
+      navItems: allFile(
+        filter: {
+          extension: { in: ["md", "mdx"] }
+          childMdx: { frontmatter: { hidden: { ne: true } } }
+        }
+        sort: { fields: childMdx___frontmatter___position, order: ASC }
+      ) {
+        group(field: relativeDirectory) {
+          title: fieldValue
+          totalCount
+          nodes {
+            id
+            childMdx {
+              fields {
+                slug
+              }
+              frontmatter {
+                title
+                disableTOC
+              }
+            }
           }
         }
       }
@@ -46,13 +98,25 @@ exports.createPages = async ({ actions: { createPage }, graphql }) => {
 
   if (errors) throw errors;
 
-  data.allFile.edges.forEach(({ node, next, previous }) =>
+  publicFiles.edges.forEach(({ node, next, previous }) =>
     createPage({
       component: require.resolve("./src/templates/doc-page.js"),
       context: {
         node,
         next,
         previous,
+        navItems,
+      },
+      path: node.childMdx.fields.slug,
+    })
+  );
+
+  hiddenFiles.nodes.forEach((node) =>
+    createPage({
+      component: require.resolve("./src/templates/doc-page.js"),
+      context: {
+        node,
+        navItems,
       },
       path: node.childMdx.fields.slug,
     })
@@ -87,11 +151,25 @@ exports.onCreateNode = async ({ node, getNode, actions }, themeOptions) => {
   }
 };
 
-exports.createSchemaCustomization = ({ actions: { createTypes } }) => {
+exports.createSchemaCustomization = ({ actions }) => {
+  const { createTypes } = actions;
+
   createTypes(`
-    type MdxFrontmatter {
+    type Mdx implements Node @infer {
+      frontmatter: MdxFrontmatter
+      fields: MdxFields
+    }
+
+    type MdxFrontmatter @infer {
       title: String!
+      hidden: Boolean
+      position: Int
       disableTOC: Boolean
+      disablePagination: Boolean
+    }
+
+    type MdxFields @infer {
+      slug: String!
     }
  `);
 };

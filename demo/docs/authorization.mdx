@@ -1,7 +1,52 @@
 ---
 title: Authorization
-category: Overview
 position: 2
 ---
 
-About auth
+Queries and mutations by default require a [Permanent Auth Token](#permanent-auth-tokens) token, but you can configure the [Public API Permissions](#public-api-permissions) to allow unauthenticated requests.
+
+GraphCMS allows you to configure access to each stage, environment, and whether or not you permit mutations.
+
+## Public API Permissions
+
+By default all new projects disable public API access. You can enable queries from your content stages, as well as specifying the default stage in which data is queried from.
+
+Since all new content entries use `DRAFT` as the default stage, you will need to enable querying drafts before you can enable mutations.
+
+<Alert type="warning">
+
+
+Enabling public access to your project means that anybody with your API endpoint can query sensitive data, and perform destructive actions.
+
+</Alert>
+
+
+## Permanent Auth Tokens
+
+Permanent Auth Tokens are used for controlling access to querying, mutating content, and comes in the form of Bearer token authentication.
+
+Similar to Public API permissions, you can create individual PATs for specific API actions.
+
+Some users create PATs for only querying data from the draft stage. You may also opt to create a PAT for mutations.
+
+If you are mutating data from the frontend, you should hide this token at the server level, and not expose your PAT client-side.
+
+The Permanent Auth Token must be passed via the `Authorization` header on HTTP requests in the format of a Bearer token:
+
+```
+Authorization: Bearer PERMANENT_AUTH_TOKEN
+```
+
+## API Endpoint
+
+Each GraphCMS project you create, or are invited to, has a unique GraphQL API endpoint. This single endpoint permits you to both query, and mutate data within your project.
+
+GraphQL introspection is enabled by default, so anybody with access to your endpoint can traverse the graph to see your content types, as well as all queries and mutations.
+
+The API endpoint also contains the current schema [environment](/getting-started/environments), by default this will be `master`.
+
+Your endpoint will look something like:
+
+```
+https://[region].graphcms.com/v2/[projectId]/[environment]
+```

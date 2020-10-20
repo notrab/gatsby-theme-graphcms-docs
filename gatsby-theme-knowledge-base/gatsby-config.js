@@ -12,7 +12,18 @@ module.exports = (themeOptions) => {
           path: docsDir,
         },
       },
-      "gatsby-plugin-mdx",
+      {
+        resolve: "gatsby-plugin-mdx",
+        options: {
+          gatsbyRemarkPlugins: ["gatsby-remark-autolink-headers"],
+        },
+      },
+      {
+        resolve: "gatsby-plugin-postcss",
+        options: {
+          postCssPlugins: [require("tailwindcss")],
+        },
+      },
     ],
   };
 };
