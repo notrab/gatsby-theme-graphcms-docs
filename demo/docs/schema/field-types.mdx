@@ -1,6 +1,6 @@
 ---
 title: Field Types
-position: 10
+position: 32
 ---
 
 Your schema is built up of GraphQL types. If you’re familiar working with GraphQL, you should feel right at home. GraphCMS supports all of the common GraphQL types you are used to, as well as some of its own.
@@ -21,8 +21,7 @@ GraphCMS supports a few variations of the String field type. Strings are just st
 
 All 3 variations of the String type are queried in the same way, and return the strings of the field they represent:
 
-<code-group>
-  <code-block label="Request" active>
+<CodeGroup>
 
 
 ```graphql
@@ -34,10 +33,6 @@ All 3 variations of the String type are queried in the same way, and return the 
   }
 }
 ```
-
-  </code-block>
-  <code-block label="Response">
-
 
 ```json
 {
@@ -53,8 +48,7 @@ All 3 variations of the String type are queried in the same way, and return the 
 }
 ```
 
-  </code-block>
-</code-group>
+</CodeGroup>
 
 
 ## Rich Text
@@ -76,8 +70,8 @@ type RichText {
 
 For example, we can query all of those on our `RichText` field type `content`:
 
-<code-group>
-  <code-block label="Request" active>
+<CodeGroup>
+  <CodeBlock label="Request" active>
 
 
 ```graphql
@@ -93,8 +87,8 @@ For example, we can query all of those on our `RichText` field type `content`:
 }
 ```
 
-  </code-block>
-  <code-block label="Response">
+  </CodeBlock>
+  <CodeBlock label="Response">
 
 
 ```json
@@ -125,8 +119,8 @@ For example, we can query all of those on our `RichText` field type `content`:
 }
 ```
 
-  </code-block>
-</code-group>
+  </CodeBlock>
+</CodeGroup>
 
 
 GraphCMS uses Slate 0.5 for Rich Text. You can see more about the RichTextAST [here](https://docs.slatejs.org).
@@ -137,8 +131,8 @@ Integers are whole numbers, and are often used to reference price in cents, stoc
 
 For example, here we have products with a Int field for price:
 
-<code-group>
-  <code-block label="Request" active>
+<CodeGroup>
+  <CodeBlock label="Request" active>
 
 
 ```graphql
@@ -149,8 +143,8 @@ For example, here we have products with a Int field for price:
 }
 ```
 
-  </code-block>
-  <code-block label="Response">
+  </CodeBlock>
+  <CodeBlock label="Response">
 
 
 ```json
@@ -165,8 +159,8 @@ For example, here we have products with a Int field for price:
 }
 ```
 
-  </code-block>
-</code-group>
+  </CodeBlock>
+</CodeGroup>
 
 
 ## Float
@@ -175,8 +169,8 @@ Floats are floating point numbers, and often represent fractional values. They a
 
 For example, here we have products with a Float field for rating:
 
-<code-group>
-  <code-block label="Request" active>
+<CodeGroup>
+  <CodeBlock label="Request" active>
 
 
 ```graphql
@@ -187,8 +181,8 @@ For example, here we have products with a Float field for rating:
 }
 ```
 
-  </code-block>
-  <code-block label="Response">
+  </CodeBlock>
+  <CodeBlock label="Response">
 
 
 ```json
@@ -203,8 +197,8 @@ For example, here we have products with a Float field for rating:
 }
 ```
 
-  </code-block>
-</code-group>
+  </CodeBlock>
+</CodeGroup>
 
 
 ## Boolean
@@ -213,8 +207,8 @@ Booleans default to `null` in GraphCMS, and can be `true` or `false`. You may op
 
 For example, here we have posts with a Boolean field for `acceptsComments`:
 
-<code-group>
-  <code-block label="Request" active>
+<CodeGroup>
+  <CodeBlock label="Request" active>
 
 
 ```graphql
@@ -225,8 +219,8 @@ For example, here we have posts with a Boolean field for `acceptsComments`:
 }
 ```
 
-  </code-block>
-  <code-block label="Response">
+  </CodeBlock>
+  <CodeBlock label="Response">
 
 
 ```json
@@ -247,8 +241,8 @@ For example, here we have posts with a Boolean field for `acceptsComments`:
 }
 ```
 
-  </code-block>
-</code-group>
+  </CodeBlock>
+</CodeGroup>
 
 
 ## Date
@@ -257,8 +251,8 @@ The Date field type adheres to [ISO 8601](https://www.iso.org/iso-8601-date-and-
 
 For example, here we have events with a Date for `start`:
 
-<code-group>
-  <code-block label="Request" active>
+<CodeGroup>
+  <CodeBlock label="Request" active>
 
 
 ```graphql
@@ -269,8 +263,8 @@ For example, here we have events with a Date for `start`:
 }
 ```
 
-  </code-block>
-  <code-block label="Response">
+  </CodeBlock>
+  <CodeBlock label="Response">
 
 
 ```json
@@ -285,8 +279,8 @@ For example, here we have events with a Date for `start`:
 }
 ```
 
-  </code-block>
-</code-group>
+  </CodeBlock>
+</CodeGroup>
 
 
 ## Date and Time
@@ -295,8 +289,8 @@ Similar to the date field type, the DateTime field type adheres to [ISO 8601](ht
 
 For example, here we have events with a DateTime for `start`:
 
-<code-group>
-  <code-block label="Request" active>
+<CodeGroup>
+  <CodeBlock label="Request" active>
 
 
 ```graphql
@@ -307,8 +301,8 @@ For example, here we have events with a DateTime for `start`:
 }
 ```
 
-  </code-block>
-  <code-block label="Response">
+  </CodeBlock>
+  <CodeBlock label="Response">
 
 
 ```json
@@ -323,8 +317,8 @@ For example, here we have events with a DateTime for `start`:
 }
 ```
 
-  </code-block>
-</code-group>
+  </CodeBlock>
+</CodeGroup>
 
 
 ## JSON
@@ -333,8 +327,8 @@ GraphCMS has native field support for JSON (JavaScript Object Notation). This fi
 
 For example, here we have products with a JSON field for `metadata`:
 
-<code-group>
-  <code-block label="Request" active>
+<CodeGroup>
+  <CodeBlock label="Request" active>
 
 
 ```graphql
@@ -345,8 +339,8 @@ For example, here we have products with a JSON field for `metadata`:
 }
 ```
 
-  </code-block>
-  <code-block label="Response">
+  </CodeBlock>
+  <CodeBlock label="Response">
 
 
 ```json
@@ -364,8 +358,8 @@ For example, here we have products with a JSON field for `metadata`:
 }
 ```
 
-  </code-block>
-</code-group>
+  </CodeBlock>
+</CodeGroup>
 
 
 ## Asset
@@ -376,8 +370,8 @@ The Asset model comes its own default [asset fields](/schema/system-fields#asset
 
 For example, here we have posts with a the Asset field for `coverImage`, querying those asset fields:
 
-<code-group>
-  <code-block label="Request" active>
+<CodeGroup>
+  <CodeBlock label="Request" active>
 
 
 ```graphql
@@ -396,8 +390,8 @@ For example, here we have posts with a the Asset field for `coverImage`, queryin
 }
 ```
 
-  </code-block>
-  <code-block label="Response">
+  </CodeBlock>
+  <CodeBlock label="Response">
 
 
 ```json
@@ -420,8 +414,8 @@ For example, here we have posts with a the Asset field for `coverImage`, queryin
 }
 ```
 
-  </code-block>
-  <code-block label="Response (PDFs)">
+  </CodeBlock>
+  <CodeBlock label="Response (PDFs)">
 
 
 ```json
@@ -444,11 +438,11 @@ For example, here we have posts with a the Asset field for `coverImage`, queryin
 }
 ```
 
-  </code-block>
-</code-group>
+  </CodeBlock>
+</CodeGroup>
 
 
-Learn more about [Assets](/content-api/assets).
+Learn more about [Assets](/api/assets).
 
 ## Color
 
@@ -470,8 +464,8 @@ type Color {
 
 For example, here is posts with a Color field for `backgroundColor`, in all formats:
 
-<code-group>
-  <code-block label="Request" active>
+<CodeGroup>
+  <CodeBlock label="Request" active>
 
 
 ```graphql
@@ -491,8 +485,8 @@ For example, here is posts with a Color field for `backgroundColor`, in all form
 }
 ```
 
-  </code-block>
-  <code-block label="Response">
+  </CodeBlock>
+  <CodeBlock label="Response">
 
 
 ```json
@@ -516,8 +510,8 @@ For example, here is posts with a Color field for `backgroundColor`, in all form
 }
 ```
 
-  </code-block>
-</code-group>
+  </CodeBlock>
+</CodeGroup>
 
 
 ## Location
@@ -542,8 +536,8 @@ To query the `distance` field, you must provide `latitude` and `longitude` value
 
 For example, here we have all shop locations, with distance from the provided latitude/longitude:
 
-<code-group>
-  <code-block label="Request" active>
+<CodeGroup>
+  <CodeBlock label="Request" active>
 
 
 ```graphql
@@ -560,8 +554,8 @@ For example, here we have all shop locations, with distance from the provided la
 }
 ```
 
-  </code-block>
-  <code-block label="Response">
+  </CodeBlock>
+  <CodeBlock label="Response">
 
 
 ```json
@@ -580,8 +574,8 @@ For example, here we have all shop locations, with distance from the provided la
 }
 ```
 
-  </code-block>
-</code-group>
+  </CodeBlock>
+</CodeGroup>
 
 
 ## Enumerations
@@ -590,8 +584,8 @@ For example, here we have all shop locations, with distance from the provided la
 
 For example, here is are products with its commodity type:
 
-<code-group>
-  <code-block label="Request" active>
+<CodeGroup>
+  <CodeBlock label="Request" active>
 
 
 ```graphql
@@ -602,8 +596,8 @@ For example, here is are products with its commodity type:
 }
 ```
 
-  </code-block>
-  <code-block label="Response">
+  </CodeBlock>
+  <CodeBlock label="Response">
 
 
 ```json
@@ -618,8 +612,8 @@ For example, here is are products with its commodity type:
 }
 ```
 
-  </code-block>
-</code-group>
+  </CodeBlock>
+</CodeGroup>
 
 
 ## Reference
@@ -628,8 +622,8 @@ References, often referred as relations, are a powerful field type that allows y
 
 For example, here we have an example of querying all products, with categories they belong to.
 
-<code-group>
-  <code-block label="Request" active>
+<CodeGroup>
+  <CodeBlock label="Request" active>
 
 
 ```graphql
@@ -643,8 +637,8 @@ For example, here we have an example of querying all products, with categories t
 }
 ```
 
-  </code-block>
-  <code-block label="Response">
+  </CodeBlock>
+  <CodeBlock label="Response">
 
 
 ```json
@@ -678,8 +672,8 @@ For example, here we have an example of querying all products, with categories t
 }
 ```
 
-  </code-block>
-</code-group>
+  </CodeBlock>
+</CodeGroup>
 
 
 ### One to one

@@ -40,8 +40,8 @@ For example, if your project contains the model `Product`, you will have:
 | --------------- | -------- | --------------------- |
 | `createProduct` | `data`   | `ProductCreateInput!` |
 
-<code-group>
-  <code-block label="Request">
+<CodeGroup>
+  <CodeBlock label="Request">
 
 
 ```graphql
@@ -55,8 +55,8 @@ mutation {
 }
 ```
 
-  </code-block>
-  <code-block label="Response">
+  </CodeBlock>
+  <CodeBlock label="Response">
 
 
 ```json
@@ -72,8 +72,8 @@ mutation {
 }
 ```
 
-  </code-block>
-</code-group>
+  </CodeBlock>
+</CodeGroup>
 
 
 The `id` is a [default system field](/schema/system-fields#default-fields) that is automatically generated for all new entries.
@@ -89,8 +89,8 @@ For example, if your project contains the model `Product`, you will have:
 | `where`  | `ProductWhereUniqueInput!` |
 | `data`   | `ProductUpdateInput!`      |
 
-<code-group>
-  <code-block label="Request">
+<CodeGroup>
+  <CodeBlock label="Request">
 
 
 ```graphql
@@ -106,8 +106,8 @@ mutation {
 }
 ```
 
-  </code-block>
-  <code-block label="Response">
+  </CodeBlock>
+  <CodeBlock label="Response">
 
 
 ```json
@@ -122,11 +122,11 @@ mutation {
 }
 ```
 
-  </code-block>
-</code-group>
+  </CodeBlock>
+</CodeGroup>
 
 
-<Alert type="info">
+<Alert>
 
 
 You can also update any unique field on your model.
@@ -147,7 +147,7 @@ For example, if your project contains the model `Product`, you will have:
 | `upsert` > `create` | `ProductCreateInput!`      |
 | `upsert` > `update` | `ProductUpdateInput!`      |
 
-<Alert type="info">
+<Alert>
 
 
 You must provide both `create`, and `update` to the `upsert` argument.
@@ -155,8 +155,8 @@ You must provide both `create`, and `update` to the `upsert` argument.
 </Alert>
 
 
-<code-group>
-  <code-block label="Request">
+<CodeGroup>
+  <CodeBlock label="Request">
 
 
 ```graphql
@@ -176,8 +176,8 @@ mutation {
 }
 ```
 
-  </code-block>
-  <code-block label="Response">
+  </CodeBlock>
+  <CodeBlock label="Response">
 
 
 ```json
@@ -192,8 +192,8 @@ mutation {
 }
 ```
 
-  </code-block>
-</code-group>
+  </CodeBlock>
+</CodeGroup>
 
 
 ## Delete entries
@@ -204,8 +204,8 @@ Similar to updating, and upserting entries, you can specify using `where` the en
 | -------- | -------------------------- |
 | `where`  | `ProductWhereUniqueInput!` |
 
-<code-group>
-  <code-block label="Request">
+<CodeGroup>
+  <CodeBlock label="Request">
 
 
 ```graphql
@@ -219,8 +219,8 @@ mutation {
 }
 ```
 
-  </code-block>
-  <code-block label="Response">
+  </CodeBlock>
+  <CodeBlock label="Response">
 
 
 ```json
@@ -235,16 +235,16 @@ mutation {
 }
 ```
 
-  </code-block>
-</code-group>
+  </CodeBlock>
+</CodeGroup>
 
 
 ## Nested mutations
 
 ### Create
 
-<code-group>
-  <code-block label="create" active>
+<CodeGroup>
+  <CodeBlock label="create" active>
 
 
 ```graphql
@@ -253,8 +253,8 @@ mutation {
 }
 ```
 
-  </code-block>
-  <code-block label="connect">
+  </CodeBlock>
+  <CodeBlock label="connect">
 
 
 ```graphql
@@ -263,14 +263,14 @@ mutation {
 }
 ```
 
-  </code-block>
-</code-group>
+  </CodeBlock>
+</CodeGroup>
 
 
 ### Update
 
-<code-group>
-  <code-block label="create" active>
+<CodeGroup>
+  <CodeBlock label="create" active>
 
 
 ```graphql
@@ -279,8 +279,8 @@ mutation {
 }
 ```
 
-  </code-block>
-  <code-block label="update">
+  </CodeBlock>
+  <CodeBlock label="update">
 
 
 ```graphql
@@ -289,8 +289,8 @@ mutation {
 }
 ```
 
-  </code-block>
-  <code-block label="upsert">
+  </CodeBlock>
+  <CodeBlock label="upsert">
 
 
 ```graphql
@@ -299,8 +299,8 @@ mutation {
 }
 ```
 
-  </code-block>
-  <code-block label="connect">
+  </CodeBlock>
+  <CodeBlock label="connect">
 
 
 ```graphql
@@ -309,8 +309,8 @@ mutation {
 }
 ```
 
-  </code-block>
-  <code-block label="disconnect">
+  </CodeBlock>
+  <CodeBlock label="disconnect">
 
 
 ```graphql
@@ -319,8 +319,8 @@ mutation {
 }
 ```
 
-  </code-block>
-  <code-block label="delete">
+  </CodeBlock>
+  <CodeBlock label="delete">
 
 
 ```graphql
@@ -329,8 +329,8 @@ mutation {
 }
 ```
 
-  </code-block>
-  <code-block label="set">
+  </CodeBlock>
+  <CodeBlock label="set">
 
 
 ```graphql
@@ -339,14 +339,14 @@ mutation {
 }
 ```
 
-  </code-block>
-</code-group>
+  </CodeBlock>
+</CodeGroup>
 
 
 ### Delete
 
-<code-group>
-  <code-block label="Request">
+<CodeGroup>
+  <CodeBlock label="Request">
 
 
 ```graphql
@@ -355,21 +355,21 @@ mutation {
 }
 ```
 
-  </code-block>
-  <code-block label="Response">
+  </CodeBlock>
+  <CodeBlock label="Response">
 
 
 ```json
 {}
 ```
 
-  </code-block>
-</code-group>
+  </CodeBlock>
+</CodeGroup>
 
 
 ### Insert at position
 
-When inserting related entries, you can `connect` entries at a given position. The position of entries reflects that [fetching relations](/content-api/queries#fetching-relations).
+When inserting related entries, you can `connect` entries at a given position. The position of entries reflects that [fetching relations](/api/queries#fetching-relations).
 
 The `position` input accepts the following values:
 
@@ -380,7 +380,7 @@ The `position` input accepts the following values:
 | `start`  | `Boolean` | Set to `true` if you want to insert at the start |
 | `end`    | `Boolean` | Set to `true` if you want to insert at the end   |
 
-<Alert type="info">
+<Alert>
 
 
 You must only provide one of these values.
@@ -390,8 +390,8 @@ You must only provide one of these values.
 
 #### Before
 
-<code-group>
-  <code-block label="Request">
+<CodeGroup>
+  <CodeBlock label="Request">
 
 
 ```graphql
@@ -405,22 +405,22 @@ mutation {
 }
 ```
 
-  </code-block>
-  <code-block label="Response">
+  </CodeBlock>
+  <CodeBlock label="Response">
 
 
 ```json
 {}
 ```
 
-  </code-block>
-</code-group>
+  </CodeBlock>
+</CodeGroup>
 
 
 #### After
 
-<code-group>
-  <code-block label="Request">
+<CodeGroup>
+  <CodeBlock label="Request">
 
 
 ```graphql
@@ -434,22 +434,22 @@ mutation {
 }
 ```
 
-  </code-block>
-  <code-block label="Response">
+  </CodeBlock>
+  <CodeBlock label="Response">
 
 
 ```json
 {}
 ```
 
-  </code-block>
-</code-group>
+  </CodeBlock>
+</CodeGroup>
 
 
 #### Start
 
-<code-group>
-  <code-block label="Request">
+<CodeGroup>
+  <CodeBlock label="Request">
 
 
 ```graphql
@@ -463,22 +463,22 @@ mutation {
 }
 ```
 
-  </code-block>
-  <code-block label="Response">
+  </CodeBlock>
+  <CodeBlock label="Response">
 
 
 ```json
 {}
 ```
 
-  </code-block>
-</code-group>
+  </CodeBlock>
+</CodeGroup>
 
 
 #### End
 
-<code-group>
-  <code-block label="Request">
+<CodeGroup>
+  <CodeBlock label="Request">
 
 
 ```graphql
@@ -492,16 +492,16 @@ mutation {
 }
 ```
 
-  </code-block>
-  <code-block label="Response">
+  </CodeBlock>
+  <CodeBlock label="Response">
 
 
 ```json
 {}
 ```
 
-  </code-block>
-</code-group>
+  </CodeBlock>
+</CodeGroup>
 
 
 ## Publishing mutations
@@ -516,11 +516,11 @@ GraphCMS supports batch mutations that can be applied to "many" entries at once.
 
 ### Update many
 
-To update many entries at once, you must use the `updateMany[Model]Connection` mutation. You can use [where](/content-api/filtering), or [pagination](/content-api/pagination) filters to set the criteria you wish to update.
+To update many entries at once, you must use the `updateMany[Model]Connection` mutation. You can use [where](/api/filtering), or [pagination](/api/pagination) filters to set the criteria you wish to update.
 
 | Argument | Input Type           | Description                                                                   |
 | -------- | -------------------- | ----------------------------------------------------------------------------- |
-| `where`  | `PageManyWhereInput` | [Filtering](/content-api/filtering) criteria for entries you want to update.  |
+| `where`  | `PageManyWhereInput` | [Filtering](/api/filtering) criteria for entries you want to update.          |
 | `data`   | `CreateInput!`       | An object that specifies the data you'd like to update matching entries with. |
 | `first`  | `Int`                | Seek forwards from end of result set.                                         |
 | `last`   | `Int`                | Seek backwards from start of result set.                                      |
@@ -538,8 +538,8 @@ If you do not pass any filters, then all entries will be updated.
 
 For example, let's update all products where `featured: true`, to be `featured: false`.
 
-<code-group>
-  <code-block label="Request">
+<CodeGroup>
+  <CodeBlock label="Request">
 
 
 ```graphql
@@ -553,30 +553,30 @@ mutation {
 }
 ```
 
-  </code-block>
-  <code-block label="Response">
+  </CodeBlock>
+  <CodeBlock label="Response">
 
 
 ```json
 {}
 ```
 
-  </code-block>
-</code-group>
+  </CodeBlock>
+</CodeGroup>
 
 
 ### Delete many
 
-To delete many entries at once, you must use the `deleteMany[Model]Connection` mutation. You can use [where](/content-api/filtering), or [pagination](/content-api/pagination) filters to set the criteria you wish to delete.
+To delete many entries at once, you must use the `deleteMany[Model]Connection` mutation. You can use [where](/api/filtering), or [pagination](/api/pagination) filters to set the criteria you wish to delete.
 
-| Argument | Input Type           | Description                                                                  |
-| -------- | -------------------- | ---------------------------------------------------------------------------- |
-| `where`  | `PageManyWhereInput` | [Filtering](/content-api/filtering) criteria for entries you want to delete. |
-| `first`  | `Int`                | Seek forwards from end of result set.                                        |
-| `last`   | `Int`                | Seek backwards from start of result set.                                     |
-| `skip`   | `Int`                | Skip result set by given amount.                                             |
-| `before` | `ID`                 | Seek backwards before specific ID.                                           |
-| `after`  | `ID`                 | Seeks forwards after specific ID.                                            |
+| Argument | Input Type           | Description                                                          |
+| -------- | -------------------- | -------------------------------------------------------------------- |
+| `where`  | `PageManyWhereInput` | [Filtering](/api/filtering) criteria for entries you want to delete. |
+| `first`  | `Int`                | Seek forwards from end of result set.                                |
+| `last`   | `Int`                | Seek backwards from start of result set.                             |
+| `skip`   | `Int`                | Skip result set by given amount.                                     |
+| `before` | `ID`                 | Seek backwards before specific ID.                                   |
+| `after`  | `ID`                 | Seeks forwards after specific ID.                                    |
 
 <Alert type="danger">
 
@@ -586,8 +586,8 @@ If you do not pass any filters, then all entries will be deleted.
 </Alert>
 
 
-<code-group>
-  <code-block label="Request">
+<CodeGroup>
+  <CodeBlock label="Request">
 
 
 ```graphql
@@ -598,22 +598,22 @@ mutation {
 }
 ```
 
-  </code-block>
-  <code-block label="Response">
+  </CodeBlock>
+  <CodeBlock label="Response">
 
 
 ```json
 {}
 ```
 
-  </code-block>
-</code-group>
+  </CodeBlock>
+</CodeGroup>
 
 
 ### Publish many
 
-<code-group>
-  <code-block label="Request">
+<CodeGroup>
+  <CodeBlock label="Request">
 
 
 ```graphql
@@ -622,22 +622,22 @@ mutation {
 }
 ```
 
-  </code-block>
-  <code-block label="Response">
+  </CodeBlock>
+  <CodeBlock label="Response">
 
 
 ```json
 {}
 ```
 
-  </code-block>
-</code-group>
+  </CodeBlock>
+</CodeGroup>
 
 
 ### Unpublish many
 
-<code-group>
-  <code-block label="Request">
+<CodeGroup>
+  <CodeBlock label="Request">
 
 
 ```graphql
@@ -646,16 +646,16 @@ mutation {
 }
 ```
 
-  </code-block>
-  <code-block label="Response">
+  </CodeBlock>
+  <CodeBlock label="Response">
 
 
 ```json
 {}
 ```
 
-  </code-block>
-</code-group>
+  </CodeBlock>
+</CodeGroup>
 
 
 ## Localized content mutations

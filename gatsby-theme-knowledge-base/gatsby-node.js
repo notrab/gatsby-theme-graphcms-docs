@@ -77,8 +77,7 @@ exports.createPages = async ({ actions: { createPage }, graphql }) => {
         sort: { fields: childMdx___frontmatter___position, order: ASC }
       ) {
         group(field: relativeDirectory) {
-          title: fieldValue
-          totalCount
+          fieldValue
           nodes {
             id
             childMdx {

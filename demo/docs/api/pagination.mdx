@@ -1,6 +1,6 @@
 ---
 title: Pagination
-position: 18
+position: 23
 ---
 
 ## Paginate query results
@@ -15,8 +15,8 @@ GraphCMS supports various arguments for paginating content entries:
 | `before` | `String` | Seek backwards before specific ID.      |
 | `after`  | `String` | Seeks forwards after specific ID.       |
 
-<code-group>
-  <code-block label="first" active>
+<CodeGroup>
+  <CodeBlock label="first" active>
 
 
 ```graphql
@@ -27,8 +27,8 @@ GraphCMS supports various arguments for paginating content entries:
 }
 ```
 
-  </code-block>
-  <code-block label="last">
+  </CodeBlock>
+  <CodeBlock label="last">
 
 
 ```graphql
@@ -39,8 +39,8 @@ GraphCMS supports various arguments for paginating content entries:
 }
 ```
 
-  </code-block>
-  <code-block label="skip">
+  </CodeBlock>
+  <CodeBlock label="skip">
 
 
 ```graphql
@@ -51,8 +51,8 @@ GraphCMS supports various arguments for paginating content entries:
 }
 ```
 
-  </code-block>
-  <code-block label="before">
+  </CodeBlock>
+  <CodeBlock label="before">
 
 
 ```graphql
@@ -63,8 +63,8 @@ GraphCMS supports various arguments for paginating content entries:
 }
 ```
 
-  </code-block>
-  <code-block label="after">
+  </CodeBlock>
+  <CodeBlock label="after">
 
 
 ```graphql
@@ -75,8 +75,8 @@ GraphCMS supports various arguments for paginating content entries:
 }
 ```
 
-  </code-block>
-</code-group>
+  </CodeBlock>
+</CodeGroup>
 
 
 <Alert type="warning">
@@ -87,7 +87,7 @@ You cannot combine `first` with `before`, or `last` with `after`.
 </Alert>
 
 
-<Alert type="info">
+<Alert>
 
 
 The default result size of results returned by queries fetching multiple entries is `100`. You can provide a maximum of `1000` to the `first`, or `last` arguments.
@@ -117,7 +117,7 @@ GraphCMS follows the Relay cursor connection specification. Each of your project
 
 The example below shows us how we can query for the first `3` posts, `after` the `cursor` (ID) `abc`. We can also query `pageInfo` to check whether there are more pages using `hasNextPage`.
 
-The [`PageInfo`](/content-api/queries#pageinfo) is useful when paginating.
+The [`PageInfo`](/api/queries#pageinfo) is useful when paginating.
 
 ```graphql
 {
@@ -140,4 +140,4 @@ The [`PageInfo`](/content-api/queries#pageinfo) is useful when paginating.
 }
 ```
 
-Learn more about [fetching with Relay](/content-api/queries#fetching-with-relay).
+Learn more about [fetching with Relay](/api/queries#fetching-with-relay).

@@ -3,4 +3,40 @@ title: Caching
 position: 4
 ---
 
-Something about caching query caching.
+All Content APIs are served via our globally distributed edge cache. Whenever a query is being sent to the API, it's response is cached in over 190 edge POPs around the globe.
+
+![GraphCMS CDN Map](https://media.graphcms.com/OCW3dSJuQyu3rW7o6vnN)
+
+<Alert>
+
+
+GraphCMS handles all cache management for you! For faster queries, use `GET` requests, so browsers can leverage advanced caching abilities available in the headers.
+
+</Alert>
+
+
+## Two-level caching
+
+We use an industry-leading multi-tiered caching appoach. The first layer is close to the user, on 190 edge servers around the world.
+
+If those edge servers don't have a cached response for the requested query, they will retrieve it from a globally distributed second caching layer before eventually retrieving it from our Servers.
+
+This method ensures a fast distribution of your content as soon as the second request hits the API.
+
+## Better than TTL
+
+Our custom cache doesn't rely on a simplistic TTL (Time-to-Live) strategy, but instead uses _Smart Invalidation_ whenever the content or underlaying schema changes. The _Smart Invalidation_ ensures that no stale content will be delivered to your connected applications.
+
+Our System understands if mutations are flowing through the cache and invalidates the affected query response immediately.
+
+## Automatic query optimizations
+
+We analyze the incoming GraphQL Queries on the edge server closest to the user. During optimization we compress the incoming query to accelerate requests to our API.
+
+In the case of whitespaces or code comments, we still serve the previously cached version.
+
+## Browser caching
+
+Additonally, we support very fast browser caching based on ETAG headers, when GET requests are being used.
+
+Some client side libraries take care of this for you. For example, if you are using Apollo Client, you can enable the `useGETForQueries` option in [`apollo-link-http`](https://www.apollographql.com/docs/link/links/http/#options).

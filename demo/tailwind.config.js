@@ -44,15 +44,27 @@ module.exports = {
           a: {
             color: theme("colors.primary.500"),
           },
+          h1: {
+            fontWeight: theme("fontWeight.medium"),
+            color: theme("colors.gray.900"),
+          },
           h2: {
+            fontWeight: theme("fontWeight.medium"),
             paddingBottom: theme("padding.2"),
             borderBottomWidth: theme("width.px"),
-            borderBottomColor: theme("colors.gray.300"),
+            borderBottomColor: theme("colors.gray.400"),
           },
           h3: {
+            fontWeight: theme("fontWeight.medium"),
             paddingBottom: theme("padding.2"),
             borderBottomWidth: theme("width.px"),
-            borderBottomColor: theme("colors.gray.300"),
+            borderBottomColor: theme("colors.gray.400"),
+          },
+          h4: {
+            fontWeight: theme("fontWeight.medium"),
+            paddingBottom: theme("padding.2"),
+            borderBottomWidth: theme("width.px"),
+            borderBottomColor: theme("colors.gray.400"),
           },
           pre: {
             backgroundColor: theme("colors.primary.900"),

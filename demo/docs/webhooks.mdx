@@ -9,11 +9,11 @@ Use GraphCMS webhooks to get notified about events that happen in your project.
 
 Triggers can be configured to listen to one or more content model, stage, and action events.
 
-| Trigger       |                                                                            |
-| ------------- | -------------------------------------------------------------------------- |
-| Content Model | All models, including `Asset`                                              |
-| Stage         | Draft, Published, and [custom content stages](/content-api/content-stages) |
-| Action        | Create, Update, Delete, Publish, and Unpublish                             |
+| Trigger       |                                                                    |
+| ------------- | ------------------------------------------------------------------ |
+| Content Model | All models, including `Asset`                                      |
+| Stage         | Draft, Published, and [custom content stages](/api/content-stages) |
+| Action        | Create, Update, Delete, Publish, and Unpublish                     |
 
 ## Receiving a webhook
 
@@ -32,8 +32,8 @@ Below is an example of both `DRAFT`, and `PUBLISHED` content stage events.
 
 In the examples below we have a `Post` model.
 
-<code-group>
-  <code-block label="Draft" active>
+<CodeGroup>
+  <CodeBlock label="Draft" active>
 
 
 ```json
@@ -62,8 +62,8 @@ In the examples below we have a `Post` model.
 }
 ```
 
-  </code-block>
-  <code-block label="Published">
+  </CodeBlock>
+  <CodeBlock label="Published">
 
 
 ```json
@@ -92,8 +92,8 @@ In the examples below we have a `Post` model.
 }
 ```
 
-  </code-block>
-  <code-block label="Custom Stage (QA)">
+  </CodeBlock>
+  <CodeBlock label="Custom Stage (QA)">
 
 
 ```json
@@ -122,6 +122,6 @@ In the examples below we have a `Post` model.
 }
 ```
 
-  </code-block>
-</code-group>
+  </CodeBlock>
+</CodeGroup>
 

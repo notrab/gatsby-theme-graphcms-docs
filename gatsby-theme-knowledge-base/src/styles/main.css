@@ -11,5 +11,5 @@ body,
 .sidebar::after {
   left: -1200px;
   content: "";
-  @apply absolute bg-gray-100 z-10 top-0 right-0 bottom-0 z-10 opacity-75;
+  @apply absolute bg-primary-50 z-10 top-0 right-0 bottom-0 z-10 opacity-75;
 }

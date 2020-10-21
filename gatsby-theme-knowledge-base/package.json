@@ -4,6 +4,7 @@
   "dependencies": {
     "@mdx-js/mdx": "1.6.18",
     "@mdx-js/react": "1.6.18",
+    "@sindresorhus/slugify": "1.1.0",
     "@tailwindcss/typography": "0.2.0",
     "classcat": "4.1.0",
     "gatsby-plugin-mdx": "1.2.48",

@@ -1,6 +1,6 @@
 ---
 title: Queries
-position: 15
+position: 20
 ---
 
 GraphCMS automatically generates queries for fetching single, and multiple entries for each defined content type belonging to your project.
@@ -83,7 +83,7 @@ When fetching one or more entry, you can also fetch the localized entries. The d
 }
 ```
 
-Learn more about [Localization](/content-api/localization).
+Learn more about [Localization](/api/localization).
 
 ## Fetching stages
 
@@ -101,7 +101,7 @@ When fetching entries, you can also specify the content `stage`. The default con
 }
 ```
 
-Learn more about [Content Stages](/content-api/content-stages).
+Learn more about [Content Stages](/api/content-stages).
 
 ## Fetching versions
 
@@ -119,7 +119,7 @@ For example, using the `postVersion` query from above, we can make a request to 
 }
 ```
 
-Learn more about [Versioning](/content-api/versioning).
+Learn more about [Versioning](/api/versioning).
 
 ## Combining arguments
 
@@ -142,10 +142,10 @@ For example, here we can get the first 3 posts, ordered by the created timestamp
 
 Learn more about these query arguments:
 
-- [Filtering](/content-api/filtering)
-- [Ordering](/content-api/ordering)
-- [Pagination](/content-api/pagination)
-- [Content Stage](/content-api/coontent-stages)
+- [Filtering](/api/filtering)
+- [Ordering](/api/ordering)
+- [Pagination](/api/pagination)
+- [Content Stage](/api/coontent-stages)
 
 ## Combining queries
 
@@ -218,7 +218,7 @@ You can use the generated Relay connection query for querying multiple entries.
 }
 ```
 
-<Alert type="info">
+<Alert>
 
 
 The `edges` response above refers to the content entry, and `cursor` is used for pagination.
@@ -266,7 +266,7 @@ GraphCMS exposes the `PageInfo` type on the field `pageInfo` for connection quer
 }
 ```
 
-Learn more about [Relay cursor pagination](/content-api/pagination#relay-cursor-connections).
+Learn more about [Relay cursor pagination](/api/pagination#relay-cursor-connections).
 
 ## GraphQL Aliases
 
@@ -284,4 +284,4 @@ Aliases let you rename the result of a field to anything you want. You may have 
 }
 ```
 
-Aliases are also useful when [transforming assets](/content-api/assets#alias-transforms).
+Aliases are also useful when [transforming assets](/api/assets#alias-transforms).

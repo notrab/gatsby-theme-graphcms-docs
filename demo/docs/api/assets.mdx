@@ -1,9 +1,9 @@
 ---
 title: Assets
-position: 22
+position: 27
 ---
 
-The Asset model is included with every project, and can be modified with custom [Field Types](/schema/field-types), and are [localized](/content-api/localization) by default, but cannot be deleted.
+The Asset model is included with every project, and can be modified with custom [Field Types](/schema/field-types), and are [localized](/api/localization) by default, but cannot be deleted.
 
 While most commonly used for photos, can support any file type including audio files, zip files, and more.
 
@@ -18,7 +18,7 @@ GraphCMS automatically generates 4 query types for assets. These are:
 - `assetVersion`
 - `assetsConnection`
 
-These queries work just like regular [queries](/content-api/queries), and can be [filtered](/content-api/filtering) by their [fields](/schema/field-types#asset).
+These queries work just like regular [queries](/api/queries), and can be [filtered](/api/filtering) by their [fields](/schema/field-types#asset).
 
 ## Referencing Assets
 
@@ -154,7 +154,7 @@ It is possible to combine both transformation arguments:
 
 ### Alias transforms
 
-[GraphQL aliases](/content-api/queries#graphql-aliases) are great for querying the same asset url with multiple transformations.
+[GraphQL aliases](/api/queries#graphql-aliases) are great for querying the same asset url with multiple transformations.
 
 For example, you could transform product images to include a `thumbnail`.
 
@@ -184,7 +184,7 @@ Simply append `/upload` to your project API endpoint to upload a new asset.
 
 `https://[region].graphcms.com/v2/[projectId]/[environment]/upload`
 
-<Alert type="info">
+<Alert>
 
 
 Uploaded files must be no bigger than 100mb.
@@ -192,16 +192,16 @@ Uploaded files must be no bigger than 100mb.
 </Alert>
 
 
-<code-group>
-  <code-block label="cURL" active>
+<CodeGroup>
+  <CodeBlock label="cURL" active>
 
 
 ```bash
 curl -XPOST -F fileUpload=@picture.jpg https://[region].graphcms.com/v2/[projectId]/[environment]/upload
 ```
 
-  </code-block>
-  <code-block label="Response">
+  </CodeBlock>
+  <CodeBlock label="Response">
 
 
 ```json
@@ -216,8 +216,8 @@ curl -XPOST -F fileUpload=@picture.jpg https://[region].graphcms.com/v2/[project
 }
 ```
 
-  </code-block>
-</code-group>
+  </CodeBlock>
+</CodeGroup>
 
 
 ## Updating Assets
@@ -234,7 +234,7 @@ mutation {
 }
 ```
 
-Learn more about [Mutations](/content-api/mutations).
+Learn more about [Mutations](/api/mutations).
 
 ## Deleting Assets
 
@@ -250,13 +250,13 @@ mutation {
 }
 ```
 
-Learn more about [Mutations](/content-api/mutations).
+Learn more about [Mutations](/api/mutations).
 
 ## Publishing assets
 
 Since Assets are a system model, they also come with publishing capabilities. You can use GraphQL mutations to publish or unpublish your assets, to and from content stages.
 
-Learn more about [Mutations](/content-api/mutations).
+Learn more about [Mutations](/api/mutations).
 
 ## Localized assets
 
