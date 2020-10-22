@@ -37,7 +37,7 @@ export default function DocPage({
             <Link to="/docs" className="text-primary-900 dark:text-white">
               <Logo />
             </Link>
-            <div>
+            <div className="hidden md:block">
               <button
                 onClick={toggleDarkMode}
                 className="appearance-none p-1 text-primary-900 dark:text-white focus:outline-none"
@@ -148,7 +148,7 @@ export default function DocPage({
             </div>
           </aside>
           <div className="flex flex-wrap w-full lg:w-4/5">
-            <div className="bg-white dark:bg-transparent w-full lg:w-3/4 xl:w-3/4 py-4 md:pt-8 md:pb-4 lg:border-r lg:border-gray-200 lg:dark:border-gray-800">
+            <div className="lg:bg-white dark:bg-transparent w-full xl:w-3/4 py-4 md:pt-8 md:pb-4 lg:border-r lg:border-gray-200 lg:dark:border-gray-800">
               <div className="lg:px-8">
                 <div className="max-w-none prose">
                   <h1 className="flex items-center justify-between">{title}</h1>

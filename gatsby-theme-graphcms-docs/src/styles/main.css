@@ -9,7 +9,7 @@ body,
 }
 
 body {
-  @apply bg-primary-50;
+  @apply bg-gray-50;
 }
 
 body.dark {
