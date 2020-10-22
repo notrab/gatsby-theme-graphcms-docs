@@ -1,0 +1,727 @@
+---
+title: Field Types
+position: 32
+---
+
+Your schema is built up of GraphQL types. If you’re familiar working with GraphQL, you should feel right at home. GraphCMS supports all of the common GraphQL types you are used to, as well as some of its own.
+
+You may also be interested in how [Input Types](/schema/input-types) work for filtering, ordering, paginating, and mutating data.
+
+Here you will discover the core field types available when building your GraphCMS schema. Since your schema is automatically [generated](/schema/generation), it is recommended you browse the [API Playground](/api-playground) to get inspect all available field type definitions.
+
+## String
+
+GraphCMS supports a few variations of the String field type. Strings are just strings, but depending on the variation you add to your model, it will reflect how it appears to content editors.
+
+| Variant          | Description                                                                                                                                                                |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Single line text | Most used with headings, page titles, slugs, email, etc.                                                                                                                   |
+| Multi line text  | Most used with strings that require no formatting, raw text like HTML, and XML where you control the parsing                                                               |
+| Markdown         | [Markdown](https://daringfireball.net/projects/markdown/syntax) is most used as an alternative to Rich Text. Enables advanced techniques such as [MDX](https://mdxjs.com). |
+
+All 3 variations of the String type are queried in the same way, and return the strings of the field they represent:
+
+<CodeGroup>
+
+
+```graphql
+{
+  products {
+    singleLineTextField
+    multiLineTextField
+    markdownField
+  }
+}
+```
+
+```json
+{
+  "data": {
+    "products": [
+      {
+        "singleLineTextField": "GraphCMS Mug",
+        "multiLineTextField": "Welcome to GraphCMS",
+        "markdownField": "# Hello"
+      }
+    ]
+  }
+}
+```
+
+</CodeGroup>
+
+
+## Rich Text
+
+The `RichText` field type is an advanced String field that returns your content in 4 different formats; `raw`, `html`, `markdown`, and `text`.
+
+The Rich Text field renders an advanced textarea with tools to add headings, links, tables, images, lists, etc.
+
+When a Rich Text field is added to your model, it will automatically generate the following types:
+
+```graphql
+type RichText {
+  raw: RichTextAST!
+  html: String!
+  markdown String!
+  text: String!
+}
+```
+
+For example, we can query all of those on our `RichText` field type `content`:
+
+<CodeGroup>
+  <CodeBlock label="Request" active>
+
+
+```graphql
+{
+  posts {
+    content {
+      raw
+      html
+      markdown
+      text
+    }
+  }
+}
+```
+
+  </CodeBlock>
+  <CodeBlock label="Response">
+
+
+```json
+{
+  "data": {
+    "posts": [
+      {
+        "content": {
+          "raw": {
+            "children": [
+              {
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "GraphQL CMS"
+                  }
+                ]
+              }
+            ]
+          },
+          "html": "<p>GraphQL CMS</p>",
+          "markdown": "GraphQL CMS\n",
+          "text": "GraphQL CMS"
+        }
+      }
+    ]
+  }
+}
+```
+
+  </CodeBlock>
+</CodeGroup>
+
+
+GraphCMS uses Slate 0.5 for Rich Text. You can see more about the RichTextAST [here](https://docs.slatejs.org).
+
+## Integer
+
+Integers are whole numbers, and are often used to reference price in cents, stock quantities etc..
+
+For example, here we have products with a Int field for price:
+
+<CodeGroup>
+  <CodeBlock label="Request" active>
+
+
+```graphql
+{
+  products {
+    price
+  }
+}
+```
+
+  </CodeBlock>
+  <CodeBlock label="Response">
+
+
+```json
+{
+  "data": {
+    "products": [
+      {
+        "price": 1000
+      }
+    ]
+  }
+}
+```
+
+  </CodeBlock>
+</CodeGroup>
+
+
+## Float
+
+Floats are floating point numbers, and often represent fractional values. They are often used to describe values with precision, such as distance, weight, volume, etc.
+
+For example, here we have products with a Float field for rating:
+
+<CodeGroup>
+  <CodeBlock label="Request" active>
+
+
+```graphql
+{
+  products {
+    rating
+  }
+}
+```
+
+  </CodeBlock>
+  <CodeBlock label="Response">
+
+
+```json
+{
+  "data": {
+    "products": [
+      {
+        "rating": 4.5
+      }
+    ]
+  }
+}
+```
+
+  </CodeBlock>
+</CodeGroup>
+
+
+## Boolean
+
+Booleans default to `null` in GraphCMS, and can be `true` or `false`. You may opt to use a Boolean for specifying if a product is on sale, is part of a bundle, or a post accepts comments.
+
+For example, here we have posts with a Boolean field for `acceptsComments`:
+
+<CodeGroup>
+  <CodeBlock label="Request" active>
+
+
+```graphql
+{
+  products {
+    acceptsComments
+  }
+}
+```
+
+  </CodeBlock>
+  <CodeBlock label="Response">
+
+
+```json
+{
+  "data": {
+    "products": [
+      {
+        "acceptsComments": true
+      },
+      {
+        "acceptsComments": false
+      },
+      {
+        "acceptsComments": null
+      }
+    ]
+  }
+}
+```
+
+  </CodeBlock>
+</CodeGroup>
+
+
+## Date
+
+The Date field type adheres to [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) standard. This means, October 7, 1989 is represented as 2018-11-07.
+
+For example, here we have events with a Date for `start`:
+
+<CodeGroup>
+  <CodeBlock label="Request" active>
+
+
+```graphql
+{
+  events {
+    start
+  }
+}
+```
+
+  </CodeBlock>
+  <CodeBlock label="Response">
+
+
+```json
+{
+  "data": {
+    "events": [
+      {
+        "start": "2018-11-07"
+      }
+    ]
+  }
+}
+```
+
+  </CodeBlock>
+</CodeGroup>
+
+
+## Date and Time
+
+Similar to the date field type, the DateTime field type adheres to [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) standard.
+
+For example, here we have events with a DateTime for `start`:
+
+<CodeGroup>
+  <CodeBlock label="Request" active>
+
+
+```graphql
+{
+  events {
+    start
+  }
+}
+```
+
+  </CodeBlock>
+  <CodeBlock label="Response">
+
+
+```json
+{
+  "data": {
+    "events": [
+      {
+        "start": "2018-11-07T09:30:00+00:00"
+      }
+    ]
+  }
+}
+```
+
+  </CodeBlock>
+</CodeGroup>
+
+
+## JSON
+
+GraphCMS has native field support for JSON (JavaScript Object Notation). This field is often used for storing large amounts of data from other systems.
+
+For example, here we have products with a JSON field for `metadata`:
+
+<CodeGroup>
+  <CodeBlock label="Request" active>
+
+
+```graphql
+{
+  products {
+    metadata
+  }
+}
+```
+
+  </CodeBlock>
+  <CodeBlock label="Response">
+
+
+```json
+{
+  "data": {
+    "products": [
+      {
+        "metadata": {
+          "values": [10, 20, 30],
+          "analyticsId": "ifuhue398"
+        }
+      }
+    ]
+  }
+}
+```
+
+  </CodeBlock>
+</CodeGroup>
+
+
+## Asset
+
+Assets are connected to models through a [reference](#reference) field. Assets can be any file type, not just images.
+
+The Asset model comes its own default [asset fields](/schema/system-fields#asset-fields).
+
+For example, here we have posts with a the Asset field for `coverImage`, querying those asset fields:
+
+<CodeGroup>
+  <CodeBlock label="Request" active>
+
+
+```graphql
+{
+  posts {
+    coverImage {
+      url
+      handle
+      fileName
+      height
+      width
+      size
+      mimeType
+    }
+  }
+}
+```
+
+  </CodeBlock>
+  <CodeBlock label="Response">
+
+
+```json
+{
+  "data": {
+    "posts": [
+      {
+        "coverImage": {
+          "url": "https://media.graphcms.com/bh4xr7efSZyBh4iVeGQq",
+          "handle": "bh4xr7efSZyBh4iVeGQq",
+          "fileName": "Examples - Swag Store.png",
+          "height": 720,
+          "width": 1280,
+          "size": 116893,
+          "mimeType": "image/png"
+        }
+      }
+    ]
+  }
+}
+```
+
+  </CodeBlock>
+  <CodeBlock label="Response (PDFs)">
+
+
+```json
+{
+  "data": {
+    "ebooks": [
+      {
+        "file": {
+          "url": "https://media.graphcms.com/pJOCAOncQO6K7azJbagS",
+          "handle": "pJOCAOncQO6K7azJbagS",
+          "fileName": "GraphCMS eBook - Navigating Towards Tomorrow-s Content with a Headless CMS.pdf",
+          "height": null,
+          "width": null,
+          "size": 2345835,
+          "mimeType": "application/pdf"
+        }
+      }
+    ]
+  }
+}
+```
+
+  </CodeBlock>
+</CodeGroup>
+
+
+Learn more about [Assets](/content-api/assets).
+
+## Color
+
+The Color field is made up of HEX, [RGBA](<https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#rgb()_and_rgba()>) and css color values.
+
+```graphql
+type Color {
+  hex: Hex!
+  rgba: RGBA!
+  css: String!
+}
+```
+
+| Field  | Type      | Description                                                         |
+| ------ | --------- | ------------------------------------------------------------------- |
+| `hex`  | `Hex!`    | Returns a String in the format of `#ffffff`                         |
+| `rgba` | `RGBA!`   | `r`, `g`, `b`, values as `RGBAHue!`, and `a` as `RGBATransparency!` |
+| `css`  | `String!` | Returns in the format of `rgb(255, 255, 255)`                       |
+
+For example, here is posts with a Color field for `backgroundColor`, in all formats:
+
+<CodeGroup>
+  <CodeBlock label="Request" active>
+
+
+```graphql
+{
+  posts {
+    backgroundColor {
+      hex
+      rgba {
+        a
+        g
+        b
+        a
+      }
+      css
+    }
+  }
+}
+```
+
+  </CodeBlock>
+  <CodeBlock label="Response">
+
+
+```json
+{
+  "data": {
+    "posts": [
+      {
+        "backgroundColor": {
+          "hex": "#ffffff",
+          "rgba": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "a": 1
+          },
+          "css": "rgb(255,255,255)"
+        }
+      }
+    ]
+  }
+}
+```
+
+  </CodeBlock>
+</CodeGroup>
+
+
+## Location
+
+The Location field type returns `latitude`, `longitude`, and `distance` Float values.
+
+```graphql
+type Location {
+  latitude: Float!
+  longitude: Float!
+  distance(from: LocationInput!): Float!
+}
+```
+
+| Field       | Type             | Description                                                |
+| ----------- | ---------------- | ---------------------------------------------------------- |
+| `latitude`  | `Float!`         | Geographic coordinate (north-south position on Earth)      |
+| `longitude` | `Float!`         | Geographic coordinate (east-west position on Earth)        |
+| `distance`  | `LocationInput!` | Distance in meters `from` the given `latitude`/`longitude` |
+
+To query the `distance` field, you must provide `latitude` and `longitude` values for the `from` argument.
+
+For example, here we have all shop locations, with distance from the provided latitude/longitude:
+
+<CodeGroup>
+  <CodeBlock label="Request" active>
+
+
+```graphql
+{
+  shops {
+    location {
+      latitude
+      longitude
+      distance(
+        from: { latitude: 50.58153970000001, longitude: 8.665300199999999 }
+      )
+    }
+  }
+}
+```
+
+  </CodeBlock>
+  <CodeBlock label="Response">
+
+
+```json
+{
+  "data": {
+    "shops": [
+      {
+        "location": {
+          "latitude": 48.7…,
+          "longitude": -122.5…,
+          "longitude": 8.66…
+        }
+      }
+    ]
+  }
+}
+```
+
+  </CodeBlock>
+</CodeGroup>
+
+
+## Enumerations
+
+[Enumerations](/schema/enumerations), or enum for short, are predefined list of values. They are defined inside your GraphQL schema, and can be referenced by any of your content models.
+
+For example, here is are products with its commodity type:
+
+<CodeGroup>
+  <CodeBlock label="Request" active>
+
+
+```graphql
+{
+  products {
+    commodity
+  }
+}
+```
+
+  </CodeBlock>
+  <CodeBlock label="Response">
+
+
+```json
+{
+  "data": {
+    "products": [
+      {
+        "commodity": "Digital"
+      }
+    ]
+  }
+}
+```
+
+  </CodeBlock>
+</CodeGroup>
+
+
+## Reference
+
+References, often referred as relations, are a powerful field type that allows you to connect one or more models together, and even reference multiple models as a single field type with GraphQL Union Types.
+
+For example, here we have an example of querying all products, with categories they belong to.
+
+<CodeGroup>
+  <CodeBlock label="Request" active>
+
+
+```graphql
+{
+  products {
+    name
+    category {
+      name
+    }
+  }
+}
+```
+
+  </CodeBlock>
+  <CodeBlock label="Response">
+
+
+```json
+{
+  "data": {
+    "products": [
+      {
+        "name": "ACME Hammer",
+        "category": [
+          {
+            "name": "ACME Products"
+          },
+          {
+            "name": "Shop Tools"
+          }
+        ]
+      },
+      {
+        "name": "ACME Shovel",
+        "category": [
+          {
+            "name": "ACME Products"
+          },
+          {
+            "name": "Garden Tools"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+  </CodeBlock>
+</CodeGroup>
+
+
+### One to one
+
+For example, a category can only have one product, and one product can only have one category.
+
+### One to many
+
+For example, a category can have multiple products, but a product cannot belong to multiple categories.
+
+### Many to one
+
+For example, a category has one product, but a product can belong to multiple categories.
+
+### Many to many
+
+For example, a category can have many products, and products can belong to many categories.
+
+### Union
+
+GraphQL Union Types are great for referencing different models as a single field.
+
+For example, here we have a typical GraphQL query for fetching `blocks` on a page.
+
+This field is configured to be either of type `Hero`, `Grid`, and/or `Gallery`:
+
+```graphql
+{
+  pages {
+    blocks {
+      __typename
+      ... on Hero {
+        title
+        ctaLink
+      }
+      ... on Grid {
+        title
+        subtitle {
+          markdown
+        }
+      }
+      ... on Gallery {
+        photos {
+          url
+          handle
+        }
+      }
+    }
+  }
+}
+```

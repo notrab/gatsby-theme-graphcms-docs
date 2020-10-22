@@ -1,3 +1,3 @@
 module.exports = {
-  plugins: [`gatsby-theme-knowledge-base`],
+  plugins: [`gatsby-theme-graphcms-docs`],
 };

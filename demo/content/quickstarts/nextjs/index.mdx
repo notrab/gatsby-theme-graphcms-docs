@@ -1,0 +1,45 @@
+---
+title: Next.js
+position: 2
+---
+
+Something about Next.js being great...
+
+## 1. Setup
+
+Run `npx create-next-ap....`
+
+## 2. Install dependencies...
+
+```bash
+npm install graphql-request graphql
+```
+
+## 3. Get products
+
+Inside `src/pages/products/[slug].js`, add the `getStaticProps` method to fetch our products at build:
+
+```js
+export async function getStaticProps({ params }) {
+  const { product } = await graphcms.request(
+    `
+    query ProductPageQuery($slug: String!) {
+      product(where: { slug: $slug }) {
+        name
+        description
+        price
+      }
+    }
+  `,
+    {
+      slug: params.slug,
+    }
+  );
+
+  return {
+    props: {
+      product,
+    },
+  };
+}
+```

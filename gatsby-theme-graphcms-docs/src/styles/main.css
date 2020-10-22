@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+#___gatsby {
+  @apply h-full;
+}
+
+body {
+  @apply bg-primary-50;
+}
+
+body.dark {
+  @apply bg-gray-900;
+}
+
+/* .sidebar::after {
+  left: -1200px;
+  content: "";
+  @apply absolute z-10 top-0 right-0 bottom-0 z-10 opacity-100;
+} */

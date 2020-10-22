@@ -2,7 +2,7 @@
   "private": true,
   "workspaces": [
     "demo",
-    "gatsby-theme-knowledge-base"
+    "gatsby-theme-graphcms-docs"
   ],
   "scripts": {
     "build": "yarn workspace demo build",

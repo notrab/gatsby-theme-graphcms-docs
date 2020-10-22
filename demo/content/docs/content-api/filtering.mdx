@@ -1,0 +1,500 @@
+---
+title: Filtering
+position: 21
+---
+
+GraphCMS automatically creates filters for types you add to your content models. These filters can be applied to a single, or multiple entries, and nested object fields.
+
+The best place to explore all available filters is by using the [API Playground](/api-playground).
+
+## Using filters
+
+To filter content entries, simply pass the `where` argument to the query, followed by any of [filter types](#filter-types) for the fields on your model.
+
+<Alert>
+
+
+All models come with their own custom GraphQL input type. Depending on the field type you want to filter by, there will be different fields you can filter by. String fields will behaviour differently to Boolean fields for example.
+
+</Alert>
+
+
+For example, a `Post` model will have the `where` input types `PostWhereInput` and `PostWhereUniqueInput` on the `posts`, and `postsConnection` query types. These types contain filters specific to that content type.
+
+## Filter types
+
+### ID
+
+Entries can be filtered by `id`.
+
+| Matches              | Type    | Behaviour           |
+| -------------------- | ------- | ------------------- |
+| `id`                 | `ID`    | Equal to            |
+| `id_not`             | `ID`    | Not this            |
+| `id_in`              | `[ID!]` | One of              |
+| `id_not_in`          | `[ID!]` | Not one of          |
+| `id_starts_with`     | `ID`    | Starts with         |
+| `id_not_starts_with` | `ID`    | Does not start with |
+| `id_ends_with`       | `ID`    | Ends with           |
+| `id_not_ends_with`   | `ID`    | Does not end with   |
+| `id_contains`        | `ID`    | Contains            |
+| `id_not_contains`    | `ID`    | Does not contain    |
+
+### String
+
+All String fields can be filtered using:
+
+| Matches                       | Type       | Behaviour                 |
+| ----------------------------- | ---------- | ------------------------- |
+| `[fieldName]_not`             | `String`   | Not this                  |
+| `[fieldName]_in`              | `[String]` | One of                    |
+| `[fieldName]_not_in`          | `[String]` | Not one of                |
+| `[fieldName]_starts_with`     | `String`   | Starts with string        |
+| `[fieldName]_not_starts_with` | `String`   | Doesn't start with string |
+| `[fieldName]_ends_with`       | `String`   | Ends with string          |
+| `[fieldName]_not_ends_with`   | `String`   | Doesn't end with string   |
+| `[fieldName]_contains`        | `String`   | Includes string           |
+| `[fieldName]_not_contains`    | `String`   | Does not include string   |
+
+### Integer
+
+All Integer fields can be filtered using:
+
+| Matches              | Type       | Behaviour                |
+| -------------------- | ---------- | ------------------------ |
+| `[fieldName]_not`    | `String`   | Not this                 |
+| `[fieldName]_in`     | `[String]` | One of                   |
+| `[fieldName]_not_in` | `[String]` | Not one of               |
+| `[fieldName]_lt`     | `String`   | Less than                |
+| `[fieldName]_gt`     | `String`   | Greater than             |
+| `[fieldName]_lte`    | `String`   | Less than or equal to    |
+| `[fieldName]_gte`    | `String`   | Greater than or equal to |
+
+```graphql
+{
+  products(where: { quantity: 100 }) {
+    quantity
+  }
+
+  multipleQuantities: products(where: { quantity_in: [10, 100, 1000] }) {
+    quantity
+  }
+}
+```
+
+### Float
+
+All Float fields can be filtered using:
+
+| Matches              | Type       | Behaviour                |
+| -------------------- | ---------- | ------------------------ |
+| `[fieldName]_not`    | `String`   | Not this                 |
+| `[fieldName]_in`     | `[String]` | One of                   |
+| `[fieldName]_not_in` | `[String]` | Not one of               |
+| `[fieldName]_lt`     | `String`   | Less than                |
+| `[fieldName]_gt`     | `String`   | Greater than             |
+| `[fieldName]_lte`    | `String`   | Less than or equal to    |
+| `[fieldName]_gte`    | `String`   | Greater than or equal to |
+
+```graphql
+{
+  products(where: { rating: 4.5 }) {
+    name
+    rating
+  }
+}
+```
+
+### Boolean
+
+All Booleans belonging to your content model can be filtered using the field name directly, as well as appended with `_not`, with a Boolean input type.
+
+| Matches       | Type      | Behaviour |
+| ------------- | --------- | --------- |
+| `[field]`     | `Boolean` | Is        |
+| `[field]_not` | `String`  | Is not    |
+
+For example, let's filter posts where the custom field `verified` is `true`:
+
+```graphql
+{
+  posts(where: { verified: true }) {
+    id
+  }
+
+  posts(where: { verified_not: true }) {
+    id
+  }
+}
+```
+
+### Date
+
+All Date fields can be filtered using:
+
+| Matches              | Type       | Behaviour                |
+| -------------------- | ---------- | ------------------------ |
+| `[fieldName]_not`    | `String`   | Not this                 |
+| `[fieldName]_in`     | `[String]` | One of                   |
+| `[fieldName]_not_in` | `[String]` | Not one of               |
+| `[fieldName]_lt`     | `String`   | Less than                |
+| `[fieldName]_gt`     | `String`   | Greater than             |
+| `[fieldName]_lte`    | `String`   | Less than or equal to    |
+| `[fieldName]_gte`    | `String`   | Greater than or equal to |
+
+```graphql
+{
+  today: events(where: { day: "2020-10-07" }) {
+    day
+  }
+
+  upcoming: events(where: { day_gt: "2020-10-07" }) {
+    day
+  }
+}
+```
+
+### DateTime
+
+GraphCMS stores Date/DateTime fields as UTC strings, ISO 8601.
+
+Like Date fields, DateTime fields can be filtered using:
+
+| Matches              | Type       | Behaviour                |
+| -------------------- | ---------- | ------------------------ |
+| `[fieldName]_not`    | `String`   | Not this                 |
+| `[fieldName]_in`     | `[String]` | One of                   |
+| `[fieldName]_not_in` | `[String]` | Not one of               |
+| `[fieldName]_lt`     | `String`   | Less than                |
+| `[fieldName]_gt`     | `String`   | Greater than             |
+| `[fieldName]_lte`    | `String`   | Less than or equal to    |
+| `[fieldName]_gte`    | `String`   | Greater than or equal to |
+
+```graphql
+{
+  events(where: { start: "2020-10-07T09:00:00+00:00" }) {
+    start
+  }
+
+  previous: events(where: { start_lt: "2020-10-07T09:00:00+00:00" }) {
+    start
+  }
+}
+```
+
+### Reference
+
+All relations (except Unions) can be filtered using filters on the fields of the model you are referencing. You can filter where every, some, and none at all match the conditions provided.
+
+| Matches             | Behaviour               |
+| ------------------- | ----------------------- |
+| `[fieldName]_every` | Every reference matches |
+| `[fieldName]_some`  | Some references match   |
+| `[fieldName]_none`  | No references match     |
+
+For example, you could fetch every post by the provided author name.
+
+```graphql
+{
+  posts(where: { authors_every: { name_in: ["John", "Simona"] } }) {
+    title
+    authors {
+      name
+    }
+  }
+}
+```
+
+#### Null references
+
+It is possible to filter on single, and multi reference fields for when these references are empty.
+
+<CodeGroup>
+  <CodeBlock label="Where no author connected" active>
+
+
+```graphql
+{
+  posts(where: { author: null }) {
+    id
+    author {
+      id
+    }
+  }
+}
+```
+
+  </CodeBlock>
+  <CodeBlock label="Where one author is connected">
+
+
+```graphql
+{
+  posts(where: { author: {} }) {
+    id
+    author {
+      id
+    }
+  }
+}
+```
+
+  </CodeBlock>
+</CodeGroup>
+
+
+- `[fieldName]_every: {}`: Returns all authors, with or without connected posts
+- `[fieldName]_some: {}`: Returns all authors with at least one connected post
+- `[fieldName]_none: {}`: Returns all authors that have no posts connected
+
+<CodeGroup>
+  <CodeBlock label="_none" active>
+
+
+```graphql
+{
+  authors(where: { posts_none: {} }) {
+    id
+    posts {
+      id
+    }
+  }
+}
+```
+
+  </CodeBlock>
+  <CodeBlock label="_some">
+
+
+```graphql
+{
+  authors(where: { posts_some: {} }) {
+    id
+    posts {
+      id
+    }
+  }
+}
+```
+
+  </CodeBlock>
+  <CodeBlock label="_every">
+
+
+```graphql
+{
+  authors(where: { posts_every: {} }) {
+    id
+    posts {
+      id
+    }
+  }
+}
+```
+
+  </CodeBlock>
+</CodeGroup>
+
+
+### Enumeration
+
+All Enum fields can be filtered by using:
+
+| Matches              | Type                 | Behaviour                |
+| -------------------- | -------------------- | ------------------------ |
+| `[fieldName]_not`    | `EnumerationValue`   | Not this                 |
+| `[fieldName]_in`     | `[EnumerationValue]` | One of                   |
+| `[fieldName]_not_in` | `[EnumerationValue]` | Not one of               |
+| `[fieldName]_lt`     | `EnumerationValue`   | Less than                |
+| `[fieldName]_gt`     | `EnumerationValue`   | Greater than             |
+| `[fieldName]_lte`    | `EnumerationValue`   | Less than or equal to    |
+| `[fieldName]_gte`    | `EnumerationValue`   | Greater than or equal to |
+
+The type of enumeration you can filter by will be the actual Enumeration values defined in your schema.
+
+```graphql
+{
+  resources(where: { type_in: [Webinar, Ebook] }) {
+    id
+  }
+}
+```
+
+<Alert>
+
+
+`Webinar` and `Ebook` are Enumeration values for field `type`.
+
+</Alert>
+
+
+### Asset
+
+All Asset fields can be filtered using:
+
+| Matches              | Type            | Behaviour                |
+| -------------------- | --------------- | ------------------------ |
+| `[fieldName]_not`    | `String`        | Not this                 |
+| `[fieldName]_in`     | `[String]`      | One of                   |
+| `[fieldName]_not_in` | `[String]`      | Not one of               |
+| `[fieldName]_lt`     | `String`        | Less than                |
+| `[fieldName]_gt`     | `String`        | Greater than             |
+| `[fieldName]_lte`    | `String`        | Less than or equal to    |
+| `[fieldName]_gte`    | `String`        | Greater than or equal to |
+| `[fieldName]_every`  | _Relation Type_ | Every reference matches  |
+| `[fieldName]_some`   | _Relation Type_ | Some references match    |
+| `[fieldName]_none`   | _Relation Type_ | No references match      |
+
+Asset fields come with their own [System Fields](/schema/system-fields#asset-fields) which you can apply these filters on, as well as any custom fields, or references you add.
+
+You can filter the asset through the reference, or when querying all assets.
+
+For example, we could fetch posts where the `coverImage` field meets the provided criteria on the systme field `fileName`:
+
+```graphql
+{
+  posts(where: { coverImage: { fileName: "image.png" } }) {
+    id
+    coverImage {
+      fileName
+    }
+  }
+}
+```
+
+## Combining filters
+
+Just like [combining query arguments](/content-api/queries#combining-arguments), it is also possible to combine filters.
+
+```graphql
+{
+  events(
+    where: {
+      start_gt: "2020-10-01T09:00:00+00:00"
+      start_lt: "2020-10-31T09:00:00+00:00"
+      fancyDress: true
+      price: 100
+    }
+  ) {
+    start
+    fancyDress
+    price
+  }
+
+  previous: events(where: { start_lt: "2020-10-07T09:00:00+00:00" }) {
+    start
+  }
+}
+```
+
+## Conditional filters
+
+GraphCMS supports conditional filters for your content using `AND`, `NOT` and `OR`. Useful for filtering results basd on more than one criteria.
+
+<Alert>
+
+
+Conditional filters are a way to logically apply conditions of the applicable filters above. They can also be nested.
+
+</Alert>
+
+
+| Input Type | Description                                          |
+| ---------- | ---------------------------------------------------- |
+| `AND`      | Fetch entires that meet both conditions.             |
+| `OR`       | Fetch entries that match either condition.           |
+| `NOT`      | Fetch all entries where the conditions do not match. |
+
+<CodeGroup>
+  <CodeBlock label="AND" active>
+
+
+```graphql
+{
+  events(
+    where: { AND: [{ start_gte: "2020-10-01" }, { start_lte: "2020-10-31" }] }
+  ) {
+    start
+  }
+}
+```
+
+  </CodeBlock>
+  <CodeBlock label="OR">
+
+
+```graphql
+{
+  events(where: { OR: [{ free: true }, { start_gt: "2020-10-31" }] }) {
+    free
+    start
+  }
+}
+```
+
+  </CodeBlock>
+  <CodeBlock label="NOT">
+
+
+```graphql
+{
+  events(where: { NOT: [{ free: true }, { start_gt: "2020-10-31" }] }) {
+    free
+    start
+  }
+}
+```
+
+  </CodeBlock>
+  <CodeBlock label="Nested">
+
+
+```graphql
+{
+  events(
+    where: {
+      OR: [
+        { AND: [{ start_gte: "2020-10-01" }, { start_lte: "2020-10-31" }] }
+        { id: "..." }
+      ]
+    }
+  ) {
+    id
+    title
+    status
+  }
+}
+```
+
+  </CodeBlock>
+</CodeGroup>
+
+
+## Filter by locales
+
+When querying content entries, you can also filter by `locales`:
+
+```graphql
+{
+  posts(locales: [en]) {
+    id
+  }
+}
+```
+
+Learn more about [localization](/content-api/localization).
+
+## Filter by stage
+
+When querying content entries, you can also filter by `stage`:
+
+```graphql
+{
+  posts(stage: PUBLISHED) {
+    id
+    stage
+  }
+}
+```
+
+Learn more about [content stages](/content-api/content-stages).

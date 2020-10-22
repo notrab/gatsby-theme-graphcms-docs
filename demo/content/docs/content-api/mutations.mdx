@@ -1,0 +1,661 @@
+---
+title: Mutations
+position: 21
+---
+
+Your project endpoint exposes GraphQL mutations you can use to modify the contents of your project. The mutations API allows you to interact with content ouside of the [GraphCMS UI](https://app.graphcms.com) using GraphQL.
+
+<Alert type="warning">
+
+
+It's not recommended you enable Public API Permissions for mutations, but instead use a [Permanent Auth Token](/authorization#permanent-auth-tokens) for mutating data.
+
+</Alert>
+
+
+## Auto-generated mutations
+
+When a new model is added to your project, so are custom GraphQL mutations.
+
+For example, if you created a `Product` model, these mutations would also be generated inside your GraphQL schema:
+
+- `createProduct`
+- `updateProduct`
+- `deleteProduct`
+- `upsertProduct`
+- `publishProduct`
+- `unpublishProduct`
+- `updateManyProductsConnection`
+- `deleteManyProductsConnection`
+- `publishManyProductsConnection`
+- `unpublishManyProductsConnection`
+
+## Create entries
+
+When creating new content entries, the `data` argument will have an associated [input type](schema/input-types) that is specific to your content model.
+
+For example, if your project contains the model `Product`, you will have:
+
+| Mutation        | Argument | Input Type            |
+| --------------- | -------- | --------------------- |
+| `createProduct` | `data`   | `ProductCreateInput!` |
+
+<CodeGroup>
+  <CodeBlock label="Request">
+
+
+```graphql
+mutation {
+  createProduct(data: { name: "Face Mask", slug: "face-mask", price: 1000 }) {
+    id
+    name
+    slug
+    price
+  }
+}
+```
+
+  </CodeBlock>
+  <CodeBlock label="Response">
+
+
+```json
+{
+  "data": {
+    "createProduct": {
+      "id": "ckgcd5hzc01wd0a446vd3kqrs",
+      "name": "Face Mask",
+      "slug": "face-mask",
+      "price": 1000
+    }
+  }
+}
+```
+
+  </CodeBlock>
+</CodeGroup>
+
+
+The `id` is a [default system field](/schema/system-fields#default-fields) that is automatically generated for all new entries.
+
+## Update entries
+
+When updating single content entry, you must specify the unique `where` criteria of which you want to update, as well as the new `data`.
+
+For example, if your project contains the model `Product`, you will have:
+
+| Argument | Input Type                 |
+| -------- | -------------------------- |
+| `where`  | `ProductWhereUniqueInput!` |
+| `data`   | `ProductUpdateInput!`      |
+
+<CodeGroup>
+  <CodeBlock label="Request">
+
+
+```graphql
+mutation {
+  updateProduct(
+    where: { id: "ckgcd5hzc01wd0a446vd3kqrs" }
+    data: { price: 100 }
+  ) {
+    id
+    name
+    price
+  }
+}
+```
+
+  </CodeBlock>
+  <CodeBlock label="Response">
+
+
+```json
+{
+  "data": {
+    "updateProduct": {
+      "id": "ckgcd5hzc01wd0a446vd3kqrs",
+      "name": "Face Mask",
+      "price": 100
+    }
+  }
+}
+```
+
+  </CodeBlock>
+</CodeGroup>
+
+
+<Alert>
+
+
+You can also update any unique field on your model.
+
+</Alert>
+
+
+## Upsert entries
+
+The upsert mutation allows you to create, or update a content entry based on whether the unique `where` values exist.
+
+For example, if your project contains the model `Product`, you will have:
+
+| Argument            | Input Type                 |
+| ------------------- | -------------------------- |
+| `where`             | `ProductWhereUniqueInput!` |
+| `upsert`            | `ProductUpsertInput!`      |
+| `upsert` > `create` | `ProductCreateInput!`      |
+| `upsert` > `update` | `ProductUpdateInput!`      |
+
+<Alert>
+
+
+You must provide both `create`, and `update` to the `upsert` argument.
+
+</Alert>
+
+
+<CodeGroup>
+  <CodeBlock label="Request">
+
+
+```graphql
+mutation {
+  upsertProduct(
+    where: { slug: "face-mask" }
+    upsert: {
+      create: { name: "Face Mask", slug: "face-mask", price: 1000 }
+      update: { name: "Face Mask", slug: "face-mask", price: 1000 }
+    }
+  ) {
+    id
+    name
+    slug
+    price
+  }
+}
+```
+
+  </CodeBlock>
+  <CodeBlock label="Response">
+
+
+```json
+{
+  "data": {
+    "upsertProduct": {
+      "id": "ckgcf201401cz0a56wyon4fj8",
+      "name": "Face Mask",
+      "slug": "face-mask"
+    }
+  }
+}
+```
+
+  </CodeBlock>
+</CodeGroup>
+
+
+## Delete entries
+
+Similar to updating, and upserting entries, you can specify using `where` the entries you want to delete using the `deleteProduct` mutation.
+
+| Argument | Input Type                 |
+| -------- | -------------------------- |
+| `where`  | `ProductWhereUniqueInput!` |
+
+<CodeGroup>
+  <CodeBlock label="Request">
+
+
+```graphql
+mutation {
+  deleteProduct(where: { id: "ckgcf201401cz0a56wyon4fj8" }) {
+    id
+    name
+    slug
+    price
+  }
+}
+```
+
+  </CodeBlock>
+  <CodeBlock label="Response">
+
+
+```json
+{
+  "data": {
+    "deleteProduct": {
+      "id": "ckgcf201401cz0a56wyon4fj8",
+      "name": "Face Mask",
+      "slug": "face-mask"
+    }
+  }
+}
+```
+
+  </CodeBlock>
+</CodeGroup>
+
+
+## Nested mutations
+
+### Create
+
+<CodeGroup>
+  <CodeBlock label="create" active>
+
+
+```graphql
+mutation {
+
+}
+```
+
+  </CodeBlock>
+  <CodeBlock label="connect">
+
+
+```graphql
+mutation {
+
+}
+```
+
+  </CodeBlock>
+</CodeGroup>
+
+
+### Update
+
+<CodeGroup>
+  <CodeBlock label="create" active>
+
+
+```graphql
+mutation {
+
+}
+```
+
+  </CodeBlock>
+  <CodeBlock label="update">
+
+
+```graphql
+mutation {
+
+}
+```
+
+  </CodeBlock>
+  <CodeBlock label="upsert">
+
+
+```graphql
+mutation {
+
+}
+```
+
+  </CodeBlock>
+  <CodeBlock label="connect">
+
+
+```graphql
+mutation {
+
+}
+```
+
+  </CodeBlock>
+  <CodeBlock label="disconnect">
+
+
+```graphql
+mutation {
+
+}
+```
+
+  </CodeBlock>
+  <CodeBlock label="delete">
+
+
+```graphql
+mutation {
+
+}
+```
+
+  </CodeBlock>
+  <CodeBlock label="set">
+
+
+```graphql
+mutation {
+
+}
+```
+
+  </CodeBlock>
+</CodeGroup>
+
+
+### Delete
+
+<CodeGroup>
+  <CodeBlock label="Request">
+
+
+```graphql
+mutation {
+
+}
+```
+
+  </CodeBlock>
+  <CodeBlock label="Response">
+
+
+```json
+{}
+```
+
+  </CodeBlock>
+</CodeGroup>
+
+
+### Insert at position
+
+When inserting related entries, you can `connect` entries at a given position. The position of entries reflects that [fetching relations](/content-api/queries#fetching-relations).
+
+The `position` input accepts the following values:
+
+| Field    | Type      | Definition                                       |
+| -------- | --------- | ------------------------------------------------ |
+| `before` | `ID`      | The ID of the entry you want to insert before    |
+| `after`  | `ID`      | The ID of the entry you want to insert after     |
+| `start`  | `Boolean` | Set to `true` if you want to insert at the start |
+| `end`    | `Boolean` | Set to `true` if you want to insert at the end   |
+
+<Alert>
+
+
+You must only provide one of these values.
+
+</Alert>
+
+
+#### Before
+
+<CodeGroup>
+  <CodeBlock label="Request">
+
+
+```graphql
+mutation {
+  updateAuthor(
+    where: { id: "..." }
+    data: { posts: { connect: { position: { before: "..." } } } }
+  ) {
+    id
+  }
+}
+```
+
+  </CodeBlock>
+  <CodeBlock label="Response">
+
+
+```json
+{}
+```
+
+  </CodeBlock>
+</CodeGroup>
+
+
+#### After
+
+<CodeGroup>
+  <CodeBlock label="Request">
+
+
+```graphql
+mutation {
+  updateAuthor(
+    where: { id: "..." }
+    data: { posts: { connect: { position: { after: "..." } } } }
+  ) {
+    id
+  }
+}
+```
+
+  </CodeBlock>
+  <CodeBlock label="Response">
+
+
+```json
+{}
+```
+
+  </CodeBlock>
+</CodeGroup>
+
+
+#### Start
+
+<CodeGroup>
+  <CodeBlock label="Request">
+
+
+```graphql
+mutation {
+  updateAuthor(
+    where: { id: "..." }
+    data: { posts: { connect: { position: { start: true } } } }
+  ) {
+    id
+  }
+}
+```
+
+  </CodeBlock>
+  <CodeBlock label="Response">
+
+
+```json
+{}
+```
+
+  </CodeBlock>
+</CodeGroup>
+
+
+#### End
+
+<CodeGroup>
+  <CodeBlock label="Request">
+
+
+```graphql
+mutation {
+  updateAuthor(
+    where: { id: "..." }
+    data: { posts: { connect: { position: { end: true } } } }
+  ) {
+    id
+  }
+}
+```
+
+  </CodeBlock>
+  <CodeBlock label="Response">
+
+
+```json
+{}
+```
+
+  </CodeBlock>
+</CodeGroup>
+
+
+## Publishing mutations
+
+### Publish
+
+### Unpublish
+
+## Batch mutations
+
+GraphCMS supports batch mutations that can be applied to "many" entries at once. You may wish to update, or delete many entries at once that fit given criteria.
+
+### Update many
+
+To update many entries at once, you must use the `updateMany[Model]Connection` mutation. You can use [where](/content-api/filtering), or [pagination](/content-api/pagination) filters to set the criteria you wish to update.
+
+| Argument | Input Type           | Description                                                                   |
+| -------- | -------------------- | ----------------------------------------------------------------------------- |
+| `where`  | `PageManyWhereInput` | [Filtering](/content-api/filtering) criteria for entries you want to update.  |
+| `data`   | `CreateInput!`       | An object that specifies the data you'd like to update matching entries with. |
+| `first`  | `Int`                | Seek forwards from end of result set.                                         |
+| `last`   | `Int`                | Seek backwards from start of result set.                                      |
+| `skip`   | `Int`                | Skip result set by given amount.                                              |
+| `before` | `ID`                 | Seek backwards before specific ID.                                            |
+| `after`  | `ID`                 | Seeks forwards after specific ID.                                             |
+
+<Alert type="danger">
+
+
+If you do not pass any filters, then all entries will be updated.
+
+</Alert>
+
+
+For example, let's update all products where `featured: true`, to be `featured: false`.
+
+<CodeGroup>
+  <CodeBlock label="Request">
+
+
+```graphql
+mutation {
+  updateManyProductsConnection(
+    where: { featured: true }
+    data: { featured: false }
+  ) {
+    featured
+  }
+}
+```
+
+  </CodeBlock>
+  <CodeBlock label="Response">
+
+
+```json
+{}
+```
+
+  </CodeBlock>
+</CodeGroup>
+
+
+### Delete many
+
+To delete many entries at once, you must use the `deleteMany[Model]Connection` mutation. You can use [where](/content-api/filtering), or [pagination](/content-api/pagination) filters to set the criteria you wish to delete.
+
+| Argument | Input Type           | Description                                                                  |
+| -------- | -------------------- | ---------------------------------------------------------------------------- |
+| `where`  | `PageManyWhereInput` | [Filtering](/content-api/filtering) criteria for entries you want to delete. |
+| `first`  | `Int`                | Seek forwards from end of result set.                                        |
+| `last`   | `Int`                | Seek backwards from start of result set.                                     |
+| `skip`   | `Int`                | Skip result set by given amount.                                             |
+| `before` | `ID`                 | Seek backwards before specific ID.                                           |
+| `after`  | `ID`                 | Seeks forwards after specific ID.                                            |
+
+<Alert type="danger">
+
+
+If you do not pass any filters, then all entries will be deleted.
+
+</Alert>
+
+
+<CodeGroup>
+  <CodeBlock label="Request">
+
+
+```graphql
+mutation {
+  deleteManyProductsConnection(where: { featured: true }) {
+    id
+  }
+}
+```
+
+  </CodeBlock>
+  <CodeBlock label="Response">
+
+
+```json
+{}
+```
+
+  </CodeBlock>
+</CodeGroup>
+
+
+### Publish many
+
+<CodeGroup>
+  <CodeBlock label="Request">
+
+
+```graphql
+mutation {
+
+}
+```
+
+  </CodeBlock>
+  <CodeBlock label="Response">
+
+
+```json
+{}
+```
+
+  </CodeBlock>
+</CodeGroup>
+
+
+### Unpublish many
+
+<CodeGroup>
+  <CodeBlock label="Request">
+
+
+```graphql
+mutation {
+
+}
+```
+
+  </CodeBlock>
+  <CodeBlock label="Response">
+
+
+```json
+{}
+```
+
+  </CodeBlock>
+</CodeGroup>
+
+
+## Localized content mutations
