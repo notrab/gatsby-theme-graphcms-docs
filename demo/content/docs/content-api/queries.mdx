@@ -273,21 +273,3 @@ GraphCMS exposes the `PageInfo` type on the field `pageInfo` for connection quer
 ```
 
 Learn more about [Relay cursor pagination](/content-api/pagination#relay-cursor-connections).
-
-## GraphQL Aliases
-
-Aliases let you rename the result of a field to anything you want. You may have [already noticed an example](#combining-queries) using aliases for querying events.
-
-```graphql
-{
-  upcoming: events(where: { start_gt: "2020-10-07T09:00:00+00:00" }) {
-    start
-  }
-
-  previous: events(where: { start_lt: "2020-10-07T09:00:00+00:00" }) {
-    start
-  }
-}
-```
-
-Aliases are also useful when [transforming assets](/content-api/assets#alias-transforms).

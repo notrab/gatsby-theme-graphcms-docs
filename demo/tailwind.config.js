@@ -75,6 +75,9 @@ module.exports = {
             borderBottomColor: theme("colors.primary.100"),
             display: "flex",
             alignItems: "center",
+            "&:hover .anchor": {
+              opacity: 100,
+            },
           },
           h3: {
             fontWeight: theme("fontWeight.medium"),

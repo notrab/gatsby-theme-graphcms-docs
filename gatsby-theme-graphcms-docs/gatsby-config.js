@@ -33,7 +33,7 @@ module.exports = (themeOptions) => {
               resolve: "gatsby-remark-autolink-headers",
               options: {
                 className:
-                  "flex items-center justify-center text-gray-300 -ml-8 absolute",
+                  "flex items-center justify-center text-gray-300 -ml-6 absolute opacity-0",
               },
             },
             "gatsby-remark-copy-linked-files",

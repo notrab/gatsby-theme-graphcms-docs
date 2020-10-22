@@ -209,8 +209,8 @@ For example, you could fetch every post by the provided author name.
 
 It is possible to filter on single, and multi reference fields for when these references are empty.
 
-<CodeGroup>
-  <CodeBlock label="Where no author connected" active>
+<Tabs>
+  <TabsItem label="Where no author connected">
 
 
 ```graphql
@@ -224,8 +224,8 @@ It is possible to filter on single, and multi reference fields for when these re
 }
 ```
 
-  </CodeBlock>
-  <CodeBlock label="Where one author is connected">
+  </TabsItem>
+  <TabsItem label="Where one author is connected">
 
 
 ```graphql
@@ -239,16 +239,16 @@ It is possible to filter on single, and multi reference fields for when these re
 }
 ```
 
-  </CodeBlock>
-</CodeGroup>
+  </TabsItem>
+</Tabs>
 
 
 - `[fieldName]_every: {}`: Returns all authors, with or without connected posts
 - `[fieldName]_some: {}`: Returns all authors with at least one connected post
 - `[fieldName]_none: {}`: Returns all authors that have no posts connected
 
-<CodeGroup>
-  <CodeBlock label="_none" active>
+<Tabs>
+  <TabsItem label="_none">
 
 
 ```graphql
@@ -262,8 +262,8 @@ It is possible to filter on single, and multi reference fields for when these re
 }
 ```
 
-  </CodeBlock>
-  <CodeBlock label="_some">
+  </TabsItem>
+  <TabsItem label="_some">
 
 
 ```graphql
@@ -277,8 +277,8 @@ It is possible to filter on single, and multi reference fields for when these re
 }
 ```
 
-  </CodeBlock>
-  <CodeBlock label="_every">
+  </TabsItem>
+  <TabsItem label="_every">
 
 
 ```graphql
@@ -292,8 +292,8 @@ It is possible to filter on single, and multi reference fields for when these re
 }
 ```
 
-  </CodeBlock>
-</CodeGroup>
+  </TabsItem>
+</Tabs>
 
 
 ### Enumeration
@@ -405,8 +405,8 @@ Conditional filters are a way to logically apply conditions of the applicable fi
 | `OR`       | Fetch entries that match either condition.           |
 | `NOT`      | Fetch all entries where the conditions do not match. |
 
-<CodeGroup>
-  <CodeBlock label="AND" active>
+<Tabs>
+  <TabsItem label="AND">
 
 
 ```graphql
@@ -419,8 +419,8 @@ Conditional filters are a way to logically apply conditions of the applicable fi
 }
 ```
 
-  </CodeBlock>
-  <CodeBlock label="OR">
+  </TabsItem>
+  <TabsItem label="OR">
 
 
 ```graphql
@@ -432,8 +432,8 @@ Conditional filters are a way to logically apply conditions of the applicable fi
 }
 ```
 
-  </CodeBlock>
-  <CodeBlock label="NOT">
+  </TabsItem>
+  <TabsItem label="NOT">
 
 
 ```graphql
@@ -445,8 +445,8 @@ Conditional filters are a way to logically apply conditions of the applicable fi
 }
 ```
 
-  </CodeBlock>
-  <CodeBlock label="Nested">
+  </TabsItem>
+  <TabsItem label="Nested">
 
 
 ```graphql
@@ -466,8 +466,8 @@ Conditional filters are a way to logically apply conditions of the applicable fi
 }
 ```
 
-  </CodeBlock>
-</CodeGroup>
+  </TabsItem>
+</Tabs>
 
 
 ## Filter by locales

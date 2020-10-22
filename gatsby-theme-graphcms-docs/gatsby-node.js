@@ -28,17 +28,6 @@ exports.createPages = async ({ actions: { createPage }, graphql }) => {
       }
     }
 
-    fragment PaginatedDocPage on File {
-      childMdx {
-        fields {
-          slug
-        }
-        frontmatter {
-          title
-        }
-      }
-    }
-
     {
       docs: allFile(
         filter: {
@@ -48,16 +37,8 @@ exports.createPages = async ({ actions: { createPage }, graphql }) => {
         }
         sort: { fields: childMdx___frontmatter___position }
       ) {
-        edges {
-          node {
-            ...DocPage
-          }
-          next {
-            ...PaginatedDocPage
-          }
-          previous {
-            ...PaginatedDocPage
-          }
+        nodes {
+          ...DocPage
         }
       }
       integrations: allFile(
@@ -68,16 +49,8 @@ exports.createPages = async ({ actions: { createPage }, graphql }) => {
         }
         sort: { fields: childMdx___frontmatter___position }
       ) {
-        edges {
-          node {
-            ...DocPage
-          }
-          next {
-            ...PaginatedDocPage
-          }
-          previous {
-            ...PaginatedDocPage
-          }
+        nodes {
+          ...DocPage
         }
       }
       quickstarts: allFile(
@@ -88,16 +61,8 @@ exports.createPages = async ({ actions: { createPage }, graphql }) => {
         }
         sort: { fields: childMdx___frontmatter___position }
       ) {
-        edges {
-          node {
-            ...DocPage
-          }
-          next {
-            ...PaginatedDocPage
-          }
-          previous {
-            ...PaginatedDocPage
-          }
+        nodes {
+          ...DocPage
         }
       }
     }
@@ -105,39 +70,33 @@ exports.createPages = async ({ actions: { createPage }, graphql }) => {
 
   if (errors) throw errors;
 
-  docs.edges.forEach(({ node, next, previous }) =>
+  docs.nodes.forEach((node) =>
     createPage({
       component: require.resolve("./src/templates/doc-page.js"),
       context: {
         node,
-        next,
-        previous,
         relativeDirectory: `/^docs/`,
       },
       path: node.childMdx.fields.slug,
     })
   );
 
-  integrations.edges.forEach(({ node, next, previous }) =>
+  integrations.nodes.forEach((node) =>
     createPage({
       component: require.resolve("./src/templates/doc-page.js"),
       context: {
         node,
-        next,
-        previous,
         relativeDirectory: `/^integrations/`,
       },
       path: node.childMdx.fields.slug,
     })
   );
 
-  quickstarts.edges.forEach(({ node, next, previous }) =>
+  quickstarts.nodes.forEach((node) =>
     createPage({
       component: require.resolve("./src/templates/doc-page.js"),
       context: {
         node,
-        next,
-        previous,
         relativeDirectory: `/^quickstarts/`,
       },
       path: node.childMdx.fields.slug,
@@ -196,7 +155,6 @@ exports.createSchemaCustomization = ({ actions }) => {
       hidden: Boolean
       position: Int
       disableTOC: Boolean
-      disablePagination: Boolean
     }
 
     type MdxFields @infer {

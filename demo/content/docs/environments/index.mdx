@@ -1,6 +1,6 @@
 ---
 title: Environments
-position: 7
+position: 4
 ---
 
 Safely work on isolated instances of your project with environments. Environments are perfect when you want to make changes to your schema, and test out new content types without breaking your production implementation.
@@ -13,22 +13,22 @@ Each environment has its own API endpoint, with the `alias` of the environment a
 
 API endpoints for both `master` and `dev` environments would follow the format of:
 
-<CodeGroup>
-  <CodeBlock label="Master" active>
+<Tabs>
+  <TabsItem label="Master">
 
 
 ```bash
 https://region.graphcms.com/v2/projectId/master
 ```
 
-  </CodeBlock>
-  <CodeBlock label="Dev">
+  </TabsItem>
+  <TabsItem label="Dev">
 
 
 ```bash
 https://region.graphcms.com/v2/projectId/dev
 ```
 
-  </CodeBlock>
-</CodeGroup>
+  </TabsItem>
+</Tabs>
 

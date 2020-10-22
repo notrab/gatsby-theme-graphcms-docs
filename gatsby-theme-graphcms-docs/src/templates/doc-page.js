@@ -10,13 +10,10 @@ import Logo from "../components/Logo";
 
 import "../styles/main.css";
 
-export default function DocPage({
-  pageContext: { node, previous, next },
-  data: { navFiles },
-}) {
+export default function DocPage({ pageContext: { node }, data: { navFiles } }) {
   const { currentPath } = useNavigationState();
   const { frontmatter, body, headings } = node.childMdx;
-  const { title, disablePagination, disableTOC } = frontmatter;
+  const { title, disableTOC } = frontmatter;
   const { value: darkModeValue, toggle: toggleDarkMode } = useDarkMode(false, {
     classNameDark: "dark",
   });
@@ -112,7 +109,7 @@ export default function DocPage({
                   return (
                     <div key={index} className={cc([{ "pt-4": isGroup }])}>
                       {isGroup && (
-                        <p className="mb-2 text-primary-400 dark:text-primary-600 uppercase tracking-wider font-bold text-sm lg:text-xs">
+                        <p className="mb-2 text-gray-400 dark:text-primary-600 uppercase tracking-wider font-medium text-sm lg:text-xs">
                           {fieldValue}
                         </p>
                       )}
@@ -156,36 +153,12 @@ export default function DocPage({
                   <MDXRenderer>{body}</MDXRenderer>
                 </div>
               </div>
-              {(previous || next) && !disablePagination && (
-                <div className="pt-4 lg:pt-8">
-                  <div className="flex justify-between items-center border-t border-primary-100 lg:dark:border-primary-700 lg:px-8 pt-4 pb-0">
-                    {previous ? (
-                      <Link
-                        to={previous.childMdx.fields.slug}
-                        className="text-primary-500 dark:text-white font-medium"
-                      >
-                        &larr; {previous.childMdx.frontmatter.title}
-                      </Link>
-                    ) : (
-                      <span />
-                    )}
-                    {next && (
-                      <Link
-                        to={next.childMdx.fields.slug}
-                        className="text-primary-500 dark:text-white font-medium"
-                      >
-                        {next.childMdx.frontmatter.title} &rarr;
-                      </Link>
-                    )}
-                  </div>
-                </div>
-              )}
             </div>
             <div className="hidden xl:block xl:w-1/4 xl:py-4 xl:pt-8 xl:pb-4">
               <div className="lg:px-8 lg:sticky lg:top-16 pt-8">
                 {headings?.length > 0 && !disableTOC && (
                   <>
-                    <p className="py-2 text-primary-400 dark:text-primary-600 uppercase tracking-wider font-bold text-sm lg:text-xs">
+                    <p className="py-2 text-gray-400 dark:text-primary-600 uppercase tracking-wider font-medium text-sm lg:text-xs">
                       On this page
                     </p>
 
