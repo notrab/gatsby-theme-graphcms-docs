@@ -1,12 +1,7 @@
 import React from "react";
 import { Link as InternalLink } from "gatsby";
 
-export default function Link({
-  href,
-  children,
-  className = "text-cornflower",
-  ...props
-}) {
+export default function Link({ href, children, ...props }) {
   if (!href) return null;
 
   const stripTrailingSlash = (href) => {
@@ -20,7 +15,6 @@ export default function Link({
   if (href.includes("http") || href.includes("mailto") || anchorLink) {
     return (
       <a
-        className={className}
         href={stripTrailingSlash(href)}
         target={anchorLink ? null : "_blank"}
         rel={anchorLink ? null : "noopener noreferrer"}
@@ -31,11 +25,7 @@ export default function Link({
     );
   } else {
     return (
-      <InternalLink
-        to={`/docs${stripTrailingSlash(href)}`}
-        className={className}
-        {...props}
-      >
+      <InternalLink to={`/docs${stripTrailingSlash(href)}`} {...props}>
         {children}
       </InternalLink>
     );

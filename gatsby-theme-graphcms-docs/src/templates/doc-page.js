@@ -31,9 +31,9 @@ export default function DocPage({
 
   return (
     <div className="pt-16 min-h-screen">
-      <header className="fixed top-0 z-40 w-full bg-white dark:bg-transparent shadow-sm border-b border-gray-200 lg:dark:border-gray-800">
+      <header className="fixed top-0 z-40 w-full bg-white dark:bg-primary-900 shadow-sm border-b border-primary-200 lg:dark:border-primary-700">
         <div className="container mx-auto h-16 px-6 flex items-center space-x-6">
-          <div className="w-full md:w-1/5 md:border-r md:border-gray-200 lg:dark:border-gray-800 md:flex md:justify-between md:items-center md:pr-3">
+          <div className="w-full md:w-1/5 md:border-r md:border-primary-100 lg:dark:border-primary-700 md:flex md:justify-between md:items-center md:pr-3">
             <Link to="/docs" className="text-primary-900 dark:text-white">
               <Logo />
             </Link>
@@ -69,7 +69,7 @@ export default function DocPage({
               <li>
                 <Link
                   to="/docs"
-                  className="px-3 py-2 text-gray-500 dark:text-gray-300"
+                  className="px-3 py-2 text-gray-700 dark:text-gray-300"
                 >
                   Documentation
                 </Link>
@@ -77,7 +77,7 @@ export default function DocPage({
               <li>
                 <Link
                   to="/integrations"
-                  className="px-3 py-2 text-gray-500 dark:text-gray-300"
+                  className="px-3 py-2 text-gray-700 dark:text-gray-300"
                 >
                   Integrations
                 </Link>
@@ -85,7 +85,8 @@ export default function DocPage({
               <li>
                 <Link
                   to="/quickstarts"
-                  className="px-3 py-2 text-primary-500 dark:text-white font-medium rounded bg-primary-100 lg:dark:bg-primary-800"
+                  className="px-3 py-2 text-gray-700 dark:text-gray-300"
+                  // className="px-3 py-2 text-primary-500 dark:text-white font-medium rounded bg-primary-100 lg:dark:bg-primary-800"
                 >
                   Quickstarts
                 </Link>
@@ -99,7 +100,7 @@ export default function DocPage({
           className="flex flex-wrap relative px-6"
           style={{ height: "calc(100vh - 4rem)" }}
         >
-          <aside className="w-full md:w-1/5 xl:w-1/5 lg:block fixed lg:relative inset-0 mt-16 lg:mt-0 hidden md:border-r md:border-gray-200 lg:dark:border-gray-800">
+          <aside className="w-full md:w-1/5 xl:w-1/5 lg:block fixed lg:relative inset-0 mt-16 lg:mt-0 hidden md:border-r md:border-primary-100 lg:dark:border-primary-700">
             <div
               className="lg:sticky lg:top-16 overflow-y-auto h-full lg:h-auto z-20"
               style={{ height: "calc(100vh - 4rem)" }}
@@ -111,8 +112,8 @@ export default function DocPage({
                   return (
                     <div key={index} className={cc([{ "pt-4": isGroup }])}>
                       {isGroup && (
-                        <p className="py-2 text-gray-400 uppercase tracking-wider font-bold text-sm lg:text-xs">
-                          Group name
+                        <p className="mb-2 text-primary-400 dark:text-primary-600 uppercase tracking-wider font-bold text-sm lg:text-xs">
+                          {fieldValue}
                         </p>
                       )}
 
@@ -123,14 +124,14 @@ export default function DocPage({
                           return (
                             <li
                               key={id}
-                              className="text-gray-600 dark:text-gray-400"
+                              className="text-gray-700 dark:text-primary-400"
                             >
                               <Link
                                 to={childMdx?.fields?.slug}
                                 className={cc([
-                                  "py-1 hover:text-primary-500 dark:hover:text-white block",
+                                  "py-1 px-2 hover:text-primary-500 dark:hover:text-white block",
                                   {
-                                    "text-primary-500 dark:text-white":
+                                    "text-primary-500 dark:text-white hover:text-primary-500 rounded bg-primary-100 dark:bg-primary-700 dark:hover:text-white":
                                       childMdx?.fields?.slug === currentPath,
                                   },
                                 ])}
@@ -148,7 +149,7 @@ export default function DocPage({
             </div>
           </aside>
           <div className="flex flex-wrap w-full lg:w-4/5">
-            <div className="lg:bg-white dark:bg-transparent w-full xl:w-3/4 py-4 md:pt-8 md:pb-4 lg:border-r lg:border-gray-200 lg:dark:border-gray-800">
+            <div className="lg:bg-white dark:bg-transparent w-full xl:w-3/4 py-4 md:pt-8 md:pb-4 lg:border-r lg:border-primary-100 lg:dark:border-primary-700">
               <div className="lg:px-8">
                 <div className="max-w-none prose">
                   <h1 className="flex items-center justify-between">{title}</h1>
@@ -157,11 +158,11 @@ export default function DocPage({
               </div>
               {(previous || next) && !disablePagination && (
                 <div className="pt-4 lg:pt-8">
-                  <div className="flex justify-between items-center border-t border-gray-200 lg:dark:border-gray-800 lg:px-8 pt-4 pb-0">
+                  <div className="flex justify-between items-center border-t border-primary-100 lg:dark:border-primary-700 lg:px-8 pt-4 pb-0">
                     {previous ? (
                       <Link
                         to={previous.childMdx.fields.slug}
-                        className="text-primary-500 font-medium"
+                        className="text-primary-500 dark:text-white font-medium"
                       >
                         &larr; {previous.childMdx.frontmatter.title}
                       </Link>
@@ -171,7 +172,7 @@ export default function DocPage({
                     {next && (
                       <Link
                         to={next.childMdx.fields.slug}
-                        className="text-primary-500 font-medium"
+                        className="text-primary-500 dark:text-white font-medium"
                       >
                         {next.childMdx.frontmatter.title} &rarr;
                       </Link>
@@ -184,7 +185,7 @@ export default function DocPage({
               <div className="lg:px-8 lg:sticky lg:top-16 pt-8">
                 {headings?.length > 0 && !disableTOC && (
                   <>
-                    <p className="py-2 text-gray-400 uppercase tracking-wider font-bold text-sm lg:text-xs">
+                    <p className="py-2 text-primary-400 dark:text-primary-600 uppercase tracking-wider font-bold text-sm lg:text-xs">
                       On this page
                     </p>
 
@@ -200,7 +201,7 @@ export default function DocPage({
                             <a
                               href={`#${href}`}
                               className={cc([
-                                "text-gray-500 dark:text-gray-400 hover:text-primary-500 dark:hover:text-white text-sm block",
+                                "text-gray-700 dark:text-primary-400 hover:text-primary-500 dark:hover:text-white text-sm block",
                                 {
                                   "py-1": depth === 2,
                                 },
@@ -220,10 +221,6 @@ export default function DocPage({
                     </ul>
                   </>
                 )}
-
-                <footer className="py-4 md:py-6 lg:py-8">
-                  <p className="text-xs text-gray-500">&copy; 2020</p>
-                </footer>
               </div>
             </div>
           </div>

@@ -9,11 +9,11 @@ body,
 }
 
 body {
-  @apply bg-gray-50;
+  @apply bg-white;
 }
 
 body.dark {
-  @apply bg-gray-900;
+  @apply bg-primary-900;
 }
 
 /* .sidebar::after {

@@ -1,3 +1,5 @@
+const { fontFamily } = require("tailwindcss/defaultTheme");
+
 module.exports = {
   dark: "class",
   experimental: {
@@ -11,31 +13,10 @@ module.exports = {
   },
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["Inter var", ...fontFamily.sans],
+      },
       colors: {
-        // primary: {
-        //   50: "#F7F6FE",
-        //   100: "#EFEDFD",
-        //   200: "#D8D1FA",
-        //   300: "#C0B5F7",
-        //   400: "#917EF0",
-        //   500: "#6246EA",
-        //   600: "#583FD3",
-        //   700: "#3B2A8C",
-        //   800: "#2C2069",
-        //   900: "#1D1546",
-        // },
-        // primary: {
-        //   50: "#f8f9fb",
-        //   100: "#EFEDFD",
-        //   200: "#D8D1FA",
-        //   300: "#C0B5F7",
-        //   400: "#F87FA5",
-        //   500: "#6246ea",
-        //   600: "#583FD3",
-        //   700: "#3B2A8C",
-        //   800: "#0d1b44",
-        //   900: "#090e24",
-        // },
         primary: {
           50: "#F7F6FE",
           100: "#EFEDFD",
@@ -65,19 +46,23 @@ module.exports = {
     typography: (theme) => ({
       default: {
         css: {
-          color: theme("colors.gray.700"),
+          color: theme("colors.gray.600"),
           p: {
-            color: theme("colors.gray.700"),
+            color: theme("colors.gray.600"),
           },
           thead: {
             color: theme("colors.gray.900"),
-            borderBottomColor: theme("colors.gray.300"),
+            borderBottomColor: theme("colors.primary.100"),
           },
           "tbody tr": {
-            borderBottomColor: theme("colors.gray.300"),
+            borderBottomColor: theme("colors.primary.100"),
           },
           a: {
             color: theme("colors.primary.500"),
+            textDecoration: theme("textDecoration.no-underline"),
+            "&:hover": {
+              color: theme("colors.primary.800"),
+            },
           },
           h1: {
             fontWeight: theme("fontWeight.medium"),
@@ -87,31 +72,36 @@ module.exports = {
             fontWeight: theme("fontWeight.medium"),
             paddingBottom: theme("padding.2"),
             borderBottomWidth: theme("width.px"),
-            borderBottomColor: theme("colors.gray.300"),
+            borderBottomColor: theme("colors.primary.100"),
+            display: "flex",
+            alignItems: "center",
           },
           h3: {
             fontWeight: theme("fontWeight.medium"),
             paddingBottom: theme("padding.2"),
             borderBottomWidth: theme("width.px"),
-            borderBottomColor: theme("colors.gray.300"),
+            borderBottomColor: theme("colors.primary.100"),
+            display: "flex",
+            alignItems: "center",
           },
           h4: {
             fontWeight: theme("fontWeight.medium"),
             paddingBottom: theme("padding.2"),
             borderBottomWidth: theme("width.px"),
-            borderBottomColor: theme("colors.gray.300"),
+            borderBottomColor: theme("colors.primary.100"),
+            display: "flex",
+            alignItems: "center",
           },
           pre: {
-            backgroundColor: theme("colors.gray.900"),
+            backgroundColor: theme("colors.primary.900"),
           },
           code: {
             color: theme("colors.primary.500"),
             fontWeight: theme("fontWeight.normal"),
             backgroundColor: theme("colors.primary.50"),
             padding: theme("padding.1"),
-            borderColor: theme("colors.primary.200"),
-            borderWidth: theme("width.px"),
             borderRadius: theme("borderRadius.default"),
+            borderWidth: 0,
           },
           "code::before": {
             content: "",
@@ -131,18 +121,18 @@ module.exports = {
             content: "",
           },
           "ol > li::before": {
-            color: theme("colors.primary.500"),
+            color: theme("colors.gray.300"),
           },
           "ul > li::before": {
-            backgroundColor: theme("colors.primary.500"),
+            backgroundColor: theme("colors.gray.300"),
           },
         },
       },
       dark: {
         css: {
-          color: theme("colors.gray.700"),
+          color: theme("colors.white"),
           p: {
-            color: theme("colors.gray.700"),
+            color: theme("colors.gray.500"),
           },
           h1: {
             color: theme("colors.white"),
@@ -163,5 +153,6 @@ module.exports = {
   plugins: [require("@tailwindcss/typography"), require("@tailwindcss/ui")],
   variants: {
     textColor: ["responsive", "hover", "focus", "dark"],
+    typography: ["responsive", "dark"],
   },
 };

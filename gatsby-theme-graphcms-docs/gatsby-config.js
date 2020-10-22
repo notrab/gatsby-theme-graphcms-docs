@@ -1,9 +1,9 @@
-const resolveConfig = require("tailwindcss/resolveConfig");
-const tailwindConfig = require("./tailwind.config.js");
+// const resolveConfig = require("tailwindcss/resolveConfig");
+// const tailwindConfig = require("./tailwind.config.js");
 
 const withThemeOptions = require("./theme-options");
 
-const resolvedTailwindConfig = resolveConfig(tailwindConfig);
+// const resolvedTailwindConfig = resolveConfig(tailwindConfig);
 
 module.exports = (themeOptions) => {
   const { contentDir } = withThemeOptions(themeOptions);
@@ -23,16 +23,37 @@ module.exports = (themeOptions) => {
           path: contentDir,
         },
       },
+      "gatsby-plugin-sharp",
+      "gatsby-transformer-sharp",
       {
         resolve: "gatsby-plugin-mdx",
         options: {
-          gatsbyRemarkPlugins: ["gatsby-remark-autolink-headers"],
+          gatsbyRemarkPlugins: [
+            {
+              resolve: "gatsby-remark-autolink-headers",
+              options: {
+                className:
+                  "flex items-center justify-center text-gray-300 -ml-8 absolute",
+              },
+            },
+            "gatsby-remark-copy-linked-files",
+            {
+              resolve: "gatsby-remark-images",
+              options: {
+                maxWidth: 760,
+                linkImagesToOriginal: false,
+                quality: 100,
+                withWebp: true,
+              },
+            },
+          ],
         },
       },
       {
         resolve: "gatsby-plugin-postcss",
         options: {
-          postCssPlugins: [require("tailwindcss")(resolvedTailwindConfig)],
+          // postCssPlugins: [require("tailwindcss")(resolvedTailwindConfig)],
+          postCssPlugins: [require("tailwindcss")],
         },
       },
     ],
