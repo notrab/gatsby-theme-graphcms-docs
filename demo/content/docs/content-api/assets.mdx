@@ -192,16 +192,16 @@ Uploaded files must be no bigger than 100mb.
 </Alert>
 
 
-<CodeGroup>
-  <CodeBlock label="cURL">
+<Tabs>
+  <TabsItem label="cURL">
 
 
 ```bash
 curl -XPOST -F fileUpload=@picture.jpg https://[region].graphcms.com/v2/[projectId]/[environment]/upload
 ```
 
-  </CodeBlock>
-  <CodeBlock label="Response">
+  </TabsItem>
+  <TabsItem label="Response">
 
 
 ```json
@@ -216,8 +216,8 @@ curl -XPOST -F fileUpload=@picture.jpg https://[region].graphcms.com/v2/[project
 }
 ```
 
-  </CodeBlock>
-</CodeGroup>
+  </TabsItem>
+</Tabs>
 
 
 ## Updating Assets

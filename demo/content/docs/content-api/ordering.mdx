@@ -53,7 +53,7 @@ You can also use the `orderBy` with any nested relations. For example, let's ima
   posts {
     id
     createdAt
-    authors(orderBy: createdAt_DESC) {
+    relatedPosts(orderBy: createdAt_DESC) {
       id
       createdAt
     }

@@ -18,16 +18,17 @@ module.exports = {
       },
       colors: {
         primary: {
-          50: "#F7F6FE",
-          100: "#EFEDFD",
-          200: "#D8D1FA",
-          300: "#C0B5F7",
-          400: "#917EF0",
-          500: "#6246EA",
+          50: "#F8F9FB",
+          100: "#DADEED",
+          150: "#F0F2F7",
+          200: "#F5F4FF",
+          300: "#626E99",
+          400: "#101B42",
+          500: "#6663FD",
           600: "#583FD3",
-          700: "#3B2A8C",
-          800: "#2C2069",
-          900: "#1D1546",
+          700: "#090E24",
+          800: "#090E24",
+          900: "#0F0F13",
         },
       },
       minHeight: {
@@ -52,10 +53,10 @@ module.exports = {
           },
           thead: {
             color: theme("colors.gray.900"),
-            borderBottomColor: theme("colors.primary.100"),
+            borderBottomColor: theme("colors.primary.150"),
           },
           "tbody tr": {
-            borderBottomColor: theme("colors.primary.100"),
+            borderBottomColor: theme("colors.primary.150"),
           },
           a: {
             color: theme("colors.primary.500"),
@@ -72,7 +73,7 @@ module.exports = {
             fontWeight: theme("fontWeight.medium"),
             paddingBottom: theme("padding.2"),
             borderBottomWidth: theme("width.px"),
-            borderBottomColor: theme("colors.primary.100"),
+            borderBottomColor: theme("colors.primary.150"),
             display: "flex",
             alignItems: "center",
             "&:hover .anchor": {
@@ -83,7 +84,7 @@ module.exports = {
             fontWeight: theme("fontWeight.medium"),
             paddingBottom: theme("padding.2"),
             borderBottomWidth: theme("width.px"),
-            borderBottomColor: theme("colors.primary.100"),
+            borderBottomColor: theme("colors.primary.150"),
             display: "flex",
             alignItems: "center",
           },
@@ -91,12 +92,12 @@ module.exports = {
             fontWeight: theme("fontWeight.medium"),
             paddingBottom: theme("padding.2"),
             borderBottomWidth: theme("width.px"),
-            borderBottomColor: theme("colors.primary.100"),
+            borderBottomColor: theme("colors.primary.150"),
             display: "flex",
             alignItems: "center",
           },
           pre: {
-            backgroundColor: theme("colors.primary.900"),
+            backgroundColor: theme("colors.primary.400"),
           },
           code: {
             color: theme("colors.primary.500"),
@@ -135,19 +136,49 @@ module.exports = {
         css: {
           color: theme("colors.white"),
           p: {
-            color: theme("colors.gray.500"),
+            color: theme("colors.gray.400"),
+          },
+          thead: {
+            color: theme("colors.gray.400"),
+            borderBottomColor: theme("colors.primary.800"),
+          },
+          "tbody tr": {
+            color: theme("colors.gray.400"),
+            borderBottomColor: theme("colors.primary.800"),
           },
           h1: {
-            color: theme("colors.white"),
+            color: theme("colors.primary.600"),
           },
           h2: {
-            color: theme("colors.white"),
+            color: theme("colors.primary.600"),
+            borderBottomColor: theme("colors.primary.800"),
           },
           h3: {
-            color: theme("colors.white"),
+            color: theme("colors.primary.600"),
+            borderBottomColor: theme("colors.primary.800"),
           },
           h4: {
-            color: theme("colors.white"),
+            color: theme("colors.primary.600"),
+            borderBottomColor: theme("colors.primary.800"),
+          },
+          pre: {
+            backgroundColor: theme("colors.primary.400"),
+          },
+          code: {
+            color: theme("colors.primary.400"),
+            backgroundColor: theme("colors.primary.900"),
+          },
+          "ol > li": {
+            color: theme("colors.gray.400"),
+          },
+          "ol > li::before": {
+            color: theme("colors.gray.400"),
+          },
+          "ul > li": {
+            color: theme("colors.gray.400"),
+          },
+          "ul > li::before": {
+            backgroundColor: theme("colors.gray.400"),
           },
         },
       },

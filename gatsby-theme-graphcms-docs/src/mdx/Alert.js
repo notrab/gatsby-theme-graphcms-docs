@@ -42,11 +42,12 @@ export default function Alert({ type = "default", children }) {
       className={cc([
         "border-l-4 mb-8 px-4 py-px flex space-x-3",
         {
-          "border-primary-400 bg-primary-50 text-primary-400":
+          "border-primary-400 bg-primary-50 dark:bg-primary-800 text-primary-400 dark:text-primary-100":
             type === "default",
         },
         {
-          "border-orange-500 bg-orange-100 text-orange-500": type === "warning",
+          "border-orange-500 bg-orange-100 dark:bg-orange-900 text-orange-500 dark:text-orange-300":
+            type === "warning",
         },
         {
           "border-red-500 bg-red-100 text-red-500": type === "danger",

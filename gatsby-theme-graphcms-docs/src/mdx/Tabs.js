@@ -24,8 +24,8 @@ function Tabs({ children }) {
   if (!(items || items.length)) return null;
 
   return (
-    <div className=" rounded">
-      <div className="space-x-3">
+    <div className="bg-primary-400 dark:bg-primary-900 rounded">
+      <div className="-mb-6 bg-primary-300 rounded-t overflow-hidden">
         {items.current.map((item, index) => {
           const isActive = item === activeItem;
 
@@ -34,9 +34,12 @@ function Tabs({ children }) {
               key={index}
               onClick={() => setActiveItem(item)}
               className={cc([
-                "appearance-none py-1 px-2 hover:text-primary-500 dark:hover:text-white",
+                "appearance-none dark:hover:text-white focus:outline-none text-sm py-2 px-5 font-medium duration-100 ease-in-out transition-opacity",
                 {
-                  "text-primary-500 dark:text-white hover:text-primary-500 rounded bg-primary-100 dark:bg-primary-700 dark:hover:text-white": isActive,
+                  "text-white dark:text-white dark:hover:text-white bg-primary-400": isActive,
+                },
+                {
+                  "text-white opacity-75 hover:opacity-100": !isActive,
                 },
               ])}
             >

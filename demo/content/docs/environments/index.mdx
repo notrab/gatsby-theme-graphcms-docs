@@ -7,26 +7,32 @@ Safely work on isolated instances of your project with environments. Environment
 
 Depending on your current user role, and payment plan, you can manage your environments from your project settings.
 
+<Alert>
+
+
 Users, Roles & Permissions, Permanent Auth Tokens, and billing will not be cloned between projects.
+
+</Alert>
+
 
 Each environment has its own API endpoint, with the `alias` of the environment appended to the URL.
 
 API endpoints for both `master` and `dev` environments would follow the format of:
 
 <Tabs>
-  <TabsItem label="Master">
+  <TabsItem label="master">
 
 
 ```bash
-https://region.graphcms.com/v2/projectId/master
+https://[region].graphcms.com/v2/[projectId]/master
 ```
 
   </TabsItem>
-  <TabsItem label="Dev">
+  <TabsItem label="dev">
 
 
 ```bash
-https://region.graphcms.com/v2/projectId/dev
+https://[region].graphcms.com/v2/[projectId]/dev
 ```
 
   </TabsItem>

@@ -13,11 +13,18 @@ body {
 }
 
 body.dark {
-  @apply bg-primary-900;
+  @apply bg-primary-800;
 }
 
-/* .sidebar::after {
+.sidebar::after {
   left: -1200px;
   content: "";
-  @apply absolute z-10 top-0 right-0 bottom-0 z-10 opacity-100;
-} */
+  @apply absolute z-10 top-0 right-0 bottom-0 opacity-100;
+}
+
+body.light-mode .sidebar::after {
+  @apply bg-primary-50;
+}
+body.dark .sidebar::after {
+  @apply bg-primary-900;
+}
