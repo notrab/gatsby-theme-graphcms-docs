@@ -14,7 +14,7 @@ To filter content entries, simply pass the `where` argument to the query, follow
 <Alert>
 
 
-All models come with their own custom GraphQL input type. Depending on the field type you want to filter by, there will be different fields you can filter by. String fields will behaviour differently to Boolean fields for example.
+All models come with their own custom GraphQL [input type](/schema/input-types). Depending on the field type you want to filter by, there will be different fields you can filter by. String fields will behaviour differently to Boolean fields for example.
 
 </Alert>
 
@@ -414,6 +414,7 @@ Conditional filters are a way to logically apply conditions of the applicable fi
   events(
     where: { AND: [{ start_gte: "2020-10-01" }, { start_lte: "2020-10-31" }] }
   ) {
+    id
     start
   }
 }
@@ -426,7 +427,7 @@ Conditional filters are a way to logically apply conditions of the applicable fi
 ```graphql
 {
   events(where: { OR: [{ free: true }, { start_gt: "2020-10-31" }] }) {
-    free
+    id
     start
   }
 }
@@ -439,7 +440,7 @@ Conditional filters are a way to logically apply conditions of the applicable fi
 ```graphql
 {
   events(where: { NOT: [{ free: true }, { start_gt: "2020-10-31" }] }) {
-    free
+    id
     start
   }
 }
@@ -460,8 +461,7 @@ Conditional filters are a way to logically apply conditions of the applicable fi
     }
   ) {
     id
-    title
-    status
+    start
   }
 }
 ```

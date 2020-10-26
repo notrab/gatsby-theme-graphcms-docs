@@ -18,7 +18,6 @@ exports.createPages = async ({ actions: { createPage }, graphql }) => {
         frontmatter {
           title
           disableTOC
-          disablePagination
         }
         body
         headings {

@@ -76,7 +76,7 @@ module.exports = {
             borderBottomColor: theme("colors.primary.150"),
             display: "flex",
             alignItems: "center",
-            "&:hover .anchor": {
+            "&:hover a.before": {
               opacity: 100,
             },
           },
@@ -87,6 +87,9 @@ module.exports = {
             borderBottomColor: theme("colors.primary.150"),
             display: "flex",
             alignItems: "center",
+            "&:hover a.before": {
+              opacity: 100,
+            },
           },
           h4: {
             fontWeight: theme("fontWeight.medium"),
@@ -95,6 +98,9 @@ module.exports = {
             borderBottomColor: theme("colors.primary.150"),
             display: "flex",
             alignItems: "center",
+            "&:hover a.before": {
+              opacity: 100,
+            },
           },
           pre: {
             backgroundColor: theme("colors.primary.400"),

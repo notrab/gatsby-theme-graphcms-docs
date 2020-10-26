@@ -5,7 +5,9 @@ position: 31
 
 All default, and custom content types come with some managed system fields. These fields reflect certain states of your content, such as when it was last updated, or published at.
 
-## Default fields
+## Default model fields
+
+These fields are included with all content models you create within GraphCMS.
 
 | Field         | Type        | Description                                        |
 | ------------- | ----------- | -------------------------------------------------- |
@@ -30,4 +32,111 @@ The Asset field type has all of the [default fields](/schema/system-fields#defau
 | `size`     | `Float`   | The total file size.                                                                   |
 | `mimeType` | `String`  | The mime type of the file.                                                             |
 
-These fields are localized by default. Learn more about [Localization](/content-api/localization).
+Asset fields are localized by default. Learn more about [Localization](/content-api/localization).
+
+## Localization fields
+
+...
+
+## Connection type fields
+
+Since GraphCMS implements the Relay specification, when [fetching with Relay](/content-api/queries#fetching-with-relay) you will have some fields made available to you automatically.
+
+For example, let's imagine we have the model `Post`. The `postsConnection` would look a little something like:
+
+| Field       | Type           | Description                                       |
+| ----------- | -------------- | ------------------------------------------------- |
+| `edges`     | `[PostEdge!]!` | A list of edges, containing cursor, and the node. |
+| `pageInfo`  | `PageInfo!`    | Information used for paginating nodes.            |
+| `aggregate` | `Aggregate!`   | The count of records, relative to any filters.    |
+
+### `[PostEdge!]!`
+
+| Field    | Type      | Description                                                   |
+| -------- | --------- | ------------------------------------------------------------- |
+| `cursor` | `String!` | The edge cursor, used for paginating records.                 |
+| `node`   | `Post!`   | The actual entry of the record, for example the `Post` entry. |
+
+<Tabs>
+  <TabsItem label="Query">
+
+
+```graphql
+{
+  postsConnection {
+    edges {
+      cursor
+      node {
+        id
+        title
+      }
+    }
+  }
+}
+```
+
+  </TabsItem>
+</Tabs>
+
+
+### `PageInfo!`
+
+GraphCMS exposes the `PageInfo` type on the field `pageInfo` for connection queries. This is useful with cursor based pagination.
+
+| Field             | Type       | Description                                       |
+| ----------------- | ---------- | ------------------------------------------------- |
+| `hasNextPage`     | `Boolean!` | When paginating forwards, are there more items?   |
+| `hasPreviousPage` | `Boolean!` | When paginating backwards, are there more items?  |
+| `startCursor`     | `String`   | When paginating backwards, the cursor to continue |
+| `endCursor`       | `String`   | When paginating forwards, the cursor to continue  |
+| `pageSize`        | `Int`      | The number of items in the current page           |
+
+<Tabs>
+  <TabsItem label="Query">
+
+
+```graphql
+{
+  postsConnection {
+    pageInfo {
+      hasNextPage
+      hasPreviousPage
+      startCursor
+      endCursor
+      pageSize
+    }
+  }
+}
+```
+
+  </TabsItem>
+</Tabs>
+
+
+Learn more about [Relay cursor pagination](/content-api/pagination#relay-cursor-connections).
+
+### `Aggregate!`
+
+It is possible using the connection type query to perform an aggregate count.
+
+| Field   | Type   | Description                                           |
+| ------- | ------ | ----------------------------------------------------- |
+| `count` | `Int!` | The count of results matching the query, and filters. |
+
+<Tabs>
+  <TabsItem label="Query">
+
+
+```graphql
+{
+  postsConnection {
+    aggregate {
+      count
+    }
+  }
+}
+```
+
+  </TabsItem>
+</Tabs>
+

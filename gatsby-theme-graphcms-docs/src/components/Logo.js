@@ -1,7 +1,7 @@
 import React from "react";
 
 export default () => (
-  <svg className="h-6 md:h-8" fill="currentColor" viewBox="0 0 330 75">
+  <svg className="h-5 md:h-6 xl:h-8" fill="currentColor" viewBox="0 0 330 75">
     <path d="M35.27 10l-8.73 5-8.73 5-8.73 5v30l8.73-5 8.73-5V35l-8.73 5V30l8.73-5 8.73-5v30l-8.73 5-8.73 5-8.73 5-8.73 5 8.73 5 8.73-5 8.73-5 8.73-5L44 55V5l-8.73-5z"></path>
     <path
       fillRule="nonzero"

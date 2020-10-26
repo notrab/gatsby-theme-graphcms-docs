@@ -10,6 +10,12 @@ import Logo from "../components/Logo";
 
 import "../styles/main.css";
 
+const groups = {
+  "docs/schema": "Schema",
+  "docs/content-api": "Content API",
+  "docs/develop": "Develop",
+};
+
 export default function DocPage({ pageContext: { node }, data: { navFiles } }) {
   const { currentPath } = useNavigationState();
   const { frontmatter, body, headings } = node.childMdx;
@@ -28,9 +34,9 @@ export default function DocPage({ pageContext: { node }, data: { navFiles } }) {
 
   return (
     <div className="min-h-screen">
-      <main className="container mx-auto">
+      <main className="xl:container mx-auto">
         <div className="flex flex-wrap relative px-6 h-screen">
-          <aside className="sidebar w-full md:w-1/5 xl:w-1/5 lg:block fixed lg:relative inset-0 lg:mt-0 hidden md:border-r md:border-primary-150 lg:dark:border-primary-800">
+          <aside className="sidebar w-full md:w-1/5 xl:w-1/5 lg:block fixed lg:relative inset-0 lg:mt-0 hidden md:border-r md:border-primary-150 md:dark:border-primary-800">
             <div className="pt-8 pr-5 pl-2 relative z-20">
               <div className="w-full md:flex md:justify-between md:items-center mb-6">
                 <Link to="/docs" className="text-primary-900 dark:text-white">
@@ -132,10 +138,10 @@ export default function DocPage({ pageContext: { node }, data: { navFiles } }) {
                   const isGroup = nodes.length > 1;
 
                   return (
-                    <div key={index} className={cc([{ "pt-4": isGroup }])}>
+                    <div key={index} className={cc([{ "pt-6": isGroup }])}>
                       {isGroup && (
                         <p className="pl-2 mb-2 text-primary-300 dark:text-primary-600 uppercase tracking-wider font-medium text-sm lg:text-xs">
-                          {fieldValue}
+                          {groups[fieldValue]}
                         </p>
                       )}
 
@@ -172,7 +178,7 @@ export default function DocPage({ pageContext: { node }, data: { navFiles } }) {
             </div>
           </aside>
           <div className="flex flex-wrap w-full lg:w-4/5">
-            <div className="lg:bg-white dark:bg-transparent w-full xl:w-3/4 py-4 md:py-8 lg:border-r lg:border-primary-150 lg:dark:border-primary-900">
+            <div className="lg:bg-white dark:bg-transparent w-full xl:w-3/4 py-4 md:py-8 xl:border-r xl:border-primary-150 xl:dark:border-primary-900">
               <div className="lg:px-8">
                 <div className="max-w-none prose dark:prose-dark">
                   <h1 className="flex items-center justify-between">{title}</h1>

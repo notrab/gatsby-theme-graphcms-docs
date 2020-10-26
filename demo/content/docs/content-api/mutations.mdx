@@ -1,6 +1,6 @@
 ---
 title: Mutations
-position: 21
+position: 28
 ---
 
 Your project endpoint exposes GraphQL mutations you can use to modify the contents of your project. The mutations API allows you to interact with content ouside of the [GraphCMS UI](https://app.graphcms.com) using GraphQL.
@@ -30,6 +30,8 @@ For example, if you created a `Product` model, these mutations would also be gen
 - `publishManyProductsConnection`
 - `unpublishManyProductsConnection`
 
+All of these mutations accept [Input Types](/schema/input-types) that are specific to your projects GraphQL schema.
+
 ## Create entries
 
 When creating new content entries, the `data` argument will have an associated [input type](schema/input-types) that is specific to your content model.
@@ -40,8 +42,8 @@ For example, if your project contains the model `Product`, you will have:
 | --------------- | -------- | --------------------- |
 | `createProduct` | `data`   | `ProductCreateInput!` |
 
-<CodeGroup>
-  <CodeBlock label="Request">
+<Tabs>
+  <TabsItem label="Request">
 
 
 ```graphql
@@ -55,8 +57,8 @@ mutation {
 }
 ```
 
-  </CodeBlock>
-  <CodeBlock label="Response">
+  </TabsItem>
+  <TabsItem label="Response">
 
 
 ```json
@@ -72,8 +74,8 @@ mutation {
 }
 ```
 
-  </CodeBlock>
-</CodeGroup>
+  </TabsItem>
+</Tabs>
 
 
 The `id` is a [default system field](/schema/system-fields#default-fields) that is automatically generated for all new entries.
@@ -89,8 +91,8 @@ For example, if your project contains the model `Product`, you will have:
 | `where`  | `ProductWhereUniqueInput!` |
 | `data`   | `ProductUpdateInput!`      |
 
-<CodeGroup>
-  <CodeBlock label="Request">
+<Tabs>
+  <TabsItem label="Request">
 
 
 ```graphql
@@ -106,8 +108,8 @@ mutation {
 }
 ```
 
-  </CodeBlock>
-  <CodeBlock label="Response">
+  </TabsItem>
+  <TabsItem label="Response">
 
 
 ```json
@@ -122,8 +124,8 @@ mutation {
 }
 ```
 
-  </CodeBlock>
-</CodeGroup>
+  </TabsItem>
+</Tabs>
 
 
 <Alert>
@@ -155,8 +157,8 @@ You must provide both `create`, and `update` to the `upsert` argument.
 </Alert>
 
 
-<CodeGroup>
-  <CodeBlock label="Request">
+<Tabs>
+  <TabsItem label="Request">
 
 
 ```graphql
@@ -176,8 +178,8 @@ mutation {
 }
 ```
 
-  </CodeBlock>
-  <CodeBlock label="Response">
+  </TabsItem>
+  <TabsItem label="Response">
 
 
 ```json
@@ -192,20 +194,22 @@ mutation {
 }
 ```
 
-  </CodeBlock>
-</CodeGroup>
+  </TabsItem>
+</Tabs>
 
 
 ## Delete entries
 
-Similar to updating, and upserting entries, you can specify using `where` the entries you want to delete using the `deleteProduct` mutation.
+Similar to updating, and upserting entries, you can specify using `where` the entries you want to delete.
+
+For example, if your project contains the model `Product`, you will have:
 
 | Argument | Input Type                 |
 | -------- | -------------------------- |
 | `where`  | `ProductWhereUniqueInput!` |
 
-<CodeGroup>
-  <CodeBlock label="Request">
+<Tabs>
+  <TabsItem label="Request">
 
 
 ```graphql
@@ -219,8 +223,8 @@ mutation {
 }
 ```
 
-  </CodeBlock>
-  <CodeBlock label="Response">
+  </TabsItem>
+  <TabsItem label="Response">
 
 
 ```json
@@ -235,16 +239,16 @@ mutation {
 }
 ```
 
-  </CodeBlock>
-</CodeGroup>
+  </TabsItem>
+</Tabs>
 
 
 ## Nested mutations
 
 ### Create
 
-<CodeGroup>
-  <CodeBlock label="create">
+<Tabs>
+  <TabsItem label="create">
 
 
 ```graphql
@@ -253,8 +257,8 @@ mutation {
 }
 ```
 
-  </CodeBlock>
-  <CodeBlock label="connect">
+  </TabsItem>
+  <TabsItem label="connect">
 
 
 ```graphql
@@ -263,14 +267,14 @@ mutation {
 }
 ```
 
-  </CodeBlock>
-</CodeGroup>
+  </TabsItem>
+</Tabs>
 
 
 ### Update
 
-<CodeGroup>
-  <CodeBlock label="create">
+<Tabs>
+  <TabsItem label="create">
 
 
 ```graphql
@@ -279,8 +283,8 @@ mutation {
 }
 ```
 
-  </CodeBlock>
-  <CodeBlock label="update">
+  </TabsItem>
+  <TabsItem label="update">
 
 
 ```graphql
@@ -289,8 +293,8 @@ mutation {
 }
 ```
 
-  </CodeBlock>
-  <CodeBlock label="upsert">
+  </TabsItem>
+  <TabsItem label="upsert">
 
 
 ```graphql
@@ -299,8 +303,8 @@ mutation {
 }
 ```
 
-  </CodeBlock>
-  <CodeBlock label="connect">
+  </TabsItem>
+  <TabsItem label="connect">
 
 
 ```graphql
@@ -309,8 +313,8 @@ mutation {
 }
 ```
 
-  </CodeBlock>
-  <CodeBlock label="disconnect">
+  </TabsItem>
+  <TabsItem label="disconnect">
 
 
 ```graphql
@@ -319,8 +323,8 @@ mutation {
 }
 ```
 
-  </CodeBlock>
-  <CodeBlock label="delete">
+  </TabsItem>
+  <TabsItem label="delete">
 
 
 ```graphql
@@ -329,8 +333,8 @@ mutation {
 }
 ```
 
-  </CodeBlock>
-  <CodeBlock label="set">
+  </TabsItem>
+  <TabsItem label="set">
 
 
 ```graphql
@@ -339,14 +343,14 @@ mutation {
 }
 ```
 
-  </CodeBlock>
-</CodeGroup>
+  </TabsItem>
+</Tabs>
 
 
 ### Delete
 
-<CodeGroup>
-  <CodeBlock label="Request">
+<Tabs>
+  <TabsItem label="Request">
 
 
 ```graphql
@@ -355,16 +359,16 @@ mutation {
 }
 ```
 
-  </CodeBlock>
-  <CodeBlock label="Response">
+  </TabsItem>
+  <TabsItem label="Response">
 
 
 ```json
 {}
 ```
 
-  </CodeBlock>
-</CodeGroup>
+  </TabsItem>
+</Tabs>
 
 
 ### Insert at position
@@ -390,8 +394,8 @@ You must only provide one of these values.
 
 #### Before
 
-<CodeGroup>
-  <CodeBlock label="Request">
+<Tabs>
+  <TabsItem label="Request">
 
 
 ```graphql
@@ -405,22 +409,22 @@ mutation {
 }
 ```
 
-  </CodeBlock>
-  <CodeBlock label="Response">
+  </TabsItem>
+  <TabsItem label="Response">
 
 
 ```json
 {}
 ```
 
-  </CodeBlock>
-</CodeGroup>
+  </TabsItem>
+</Tabs>
 
 
 #### After
 
-<CodeGroup>
-  <CodeBlock label="Request">
+<Tabs>
+  <TabsItem label="Request">
 
 
 ```graphql
@@ -434,22 +438,22 @@ mutation {
 }
 ```
 
-  </CodeBlock>
-  <CodeBlock label="Response">
+  </TabsItem>
+  <TabsItem label="Response">
 
 
 ```json
 {}
 ```
 
-  </CodeBlock>
-</CodeGroup>
+  </TabsItem>
+</Tabs>
 
 
 #### Start
 
-<CodeGroup>
-  <CodeBlock label="Request">
+<Tabs>
+  <TabsItem label="Request">
 
 
 ```graphql
@@ -463,22 +467,22 @@ mutation {
 }
 ```
 
-  </CodeBlock>
-  <CodeBlock label="Response">
+  </TabsItem>
+  <TabsItem label="Response">
 
 
 ```json
 {}
 ```
 
-  </CodeBlock>
-</CodeGroup>
+  </TabsItem>
+</Tabs>
 
 
 #### End
 
-<CodeGroup>
-  <CodeBlock label="Request">
+<Tabs>
+  <TabsItem label="Request">
 
 
 ```graphql
@@ -492,16 +496,16 @@ mutation {
 }
 ```
 
-  </CodeBlock>
-  <CodeBlock label="Response">
+  </TabsItem>
+  <TabsItem label="Response">
 
 
 ```json
 {}
 ```
 
-  </CodeBlock>
-</CodeGroup>
+  </TabsItem>
+</Tabs>
 
 
 ## Publishing mutations
@@ -538,8 +542,8 @@ If you do not pass any filters, then all entries will be updated.
 
 For example, let's update all products where `featured: true`, to be `featured: false`.
 
-<CodeGroup>
-  <CodeBlock label="Request">
+<Tabs>
+  <TabsItem label="Request">
 
 
 ```graphql
@@ -553,16 +557,16 @@ mutation {
 }
 ```
 
-  </CodeBlock>
-  <CodeBlock label="Response">
+  </TabsItem>
+  <TabsItem label="Response">
 
 
 ```json
 {}
 ```
 
-  </CodeBlock>
-</CodeGroup>
+  </TabsItem>
+</Tabs>
 
 
 ### Delete many
@@ -586,8 +590,8 @@ If you do not pass any filters, then all entries will be deleted.
 </Alert>
 
 
-<CodeGroup>
-  <CodeBlock label="Request">
+<Tabs>
+  <TabsItem label="Request">
 
 
 ```graphql
@@ -598,22 +602,22 @@ mutation {
 }
 ```
 
-  </CodeBlock>
-  <CodeBlock label="Response">
+  </TabsItem>
+  <TabsItem label="Response">
 
 
 ```json
 {}
 ```
 
-  </CodeBlock>
-</CodeGroup>
+  </TabsItem>
+</Tabs>
 
 
 ### Publish many
 
-<CodeGroup>
-  <CodeBlock label="Request">
+<Tabs>
+  <TabsItem label="Request">
 
 
 ```graphql
@@ -622,22 +626,22 @@ mutation {
 }
 ```
 
-  </CodeBlock>
-  <CodeBlock label="Response">
+  </TabsItem>
+  <TabsItem label="Response">
 
 
 ```json
 {}
 ```
 
-  </CodeBlock>
-</CodeGroup>
+  </TabsItem>
+</Tabs>
 
 
 ### Unpublish many
 
-<CodeGroup>
-  <CodeBlock label="Request">
+<Tabs>
+  <TabsItem label="Request">
 
 
 ```graphql
@@ -646,16 +650,16 @@ mutation {
 }
 ```
 
-  </CodeBlock>
-  <CodeBlock label="Response">
+  </TabsItem>
+  <TabsItem label="Response">
 
 
 ```json
 {}
 ```
 
-  </CodeBlock>
-</CodeGroup>
+  </TabsItem>
+</Tabs>
 
 
 ## Localized content mutations
