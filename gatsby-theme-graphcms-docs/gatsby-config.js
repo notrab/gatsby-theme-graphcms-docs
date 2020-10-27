@@ -3,7 +3,7 @@
 
 const withThemeOptions = require("./theme-options");
 
-// const resolvedTailwindConfig = resolveConfig(tailwindConfig);
+const resolvedTailwindConfig = resolveConfig(tailwindConfig);
 
 module.exports = (themeOptions) => {
   const { contentDir } = withThemeOptions(themeOptions);
@@ -52,8 +52,7 @@ module.exports = (themeOptions) => {
       {
         resolve: "gatsby-plugin-postcss",
         options: {
-          // postCssPlugins: [require("tailwindcss")(resolvedTailwindConfig)],
-          postCssPlugins: [require("tailwindcss")],
+          postCssPlugins: [require("tailwindcss")(resolvedTailwindConfig)],
         },
       },
     ],
