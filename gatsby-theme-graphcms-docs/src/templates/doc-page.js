@@ -74,7 +74,7 @@ export default function DocPage({ pageContext: { node }, data: { navFiles } }) {
                 <li className="-ml-2">
                   <Link
                     to="/docs"
-                    className="py-1.5 px-2 flex items-center text-primary-500 bg-white border border-primary-100 rounded shadow-sm"
+                    className="py-1.5 px-2 flex items-center text-primary-500 bg-white rounded shadow-sm"
                   >
                     <span className="mr-2">
                       <svg
