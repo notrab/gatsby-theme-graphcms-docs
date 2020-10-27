@@ -184,6 +184,8 @@ Simply append `/upload` to your project API endpoint to upload a new asset.
 
 `https://[region].graphcms.com/v2/[projectId]/[environment]/upload`
 
+### Upload by file
+
 <Alert>
 
 
@@ -206,7 +208,7 @@ curl -XPOST -F fileUpload=@picture.jpg https://[region].graphcms.com/v2/[project
 
 ```json
 {
-  "filename": "picture.jpg",
+  "filename": "pexels-photo-1170986.jpeg",
   "mimetype": "image/jpeg",
   "size": 32476,
   "width": 500,
@@ -220,11 +222,43 @@ curl -XPOST -F fileUpload=@picture.jpg https://[region].graphcms.com/v2/[project
 </Tabs>
 
 
+### Upload by remote URL
+
+You can also upload files by providing a remote URL, instead of a file.
+
+<Tabs>
+  <TabsItem label="cURL">
+
+
+```bash
+curl -XPOST -d url=https://media.graphcms.com/P3TkBzxyQLupgDWNFydB https://[region].graphcms.com/v2/[projectId]/[environment]/upload
+```
+
+  </TabsItem>
+  <TabsItem label="Response">
+
+
+```json
+{
+  "filename": "pexels-photo-1170986.jpeg",
+  "mimetype": "image/jpeg",
+  "size": 32476,
+  "width": 500,
+  "height": 750,
+  "url": "https://media.graphcms.com/J9BOEF3OSuuSXDhvriQa",
+  "id": "ckgs20b80017109547vfev24c"
+}
+```
+
+  </TabsItem>
+</Tabs>
+
+
 ## Updating Assets
 
 Since assets are a system model, and automatically added to every project, you can extend them with your own custom fields.
 
-These fields can be updated using GraphQL mutations. For example, some users add a captio field to assets:
+These fields can be updated using GraphQL mutations. For example, some users add a `caption` field to assets:
 
 ```graphql
 mutation {

@@ -22,21 +22,30 @@ Since the Asset model is included with every project, it also comes with some pr
 
 The Asset field type has all of the [default fields](/schema/system-fields#default-fields), as well as:
 
-| Field      | Type      | Description                                                                            |
-| ---------- | --------- | -------------------------------------------------------------------------------------- |
-| `url`      | `String!` | The URL of the asset, with any [transformations](/content-api/assets#transformations). |
-| `handle`   | `String!` | The file handle.                                                                       |
-| `fileName` | `String!` | The document file name that was uploaded.                                              |
-| `height`   | `Float`   | The height of the file (for images only).                                              |
-| `width`    | `Float`   | The width of the file (for images only).                                               |
-| `size`     | `Float`   | The total file size.                                                                   |
-| `mimeType` | `String`  | The mime type of the file.                                                             |
+| Field           | Type        | Description                                                                            |
+| --------------- | ----------- | -------------------------------------------------------------------------------------- |
+| `url`           | `String!`   | The URL of the asset, with any [transformations](/content-api/assets#transformations). |
+| `handle`        | `String!`   | The file handle.                                                                       |
+| `fileName`      | `String!`   | The document file name that was uploaded.                                              |
+| `height`        | `Float`     | The height of the file (for images only).                                              |
+| `width`         | `Float`     | The width of the file (for images only).                                               |
+| `size`          | `Float`     | The total file size.                                                                   |
+| `mimeType`      | `String`    | The mime type of the file.                                                             |
+| `locale`        | `Locale!`   | The system locale enumeration for your projects locales. E.g. `en`, `de`.              |
+| `localizations` | `[Asset!]!` | An array of localized assets for the asset you are querying.                           |
 
-Asset fields are localized by default. Learn more about [Localization](/content-api/localization).
+Asset fields are localized by default, and always include the localization fields described below.
 
 ## Localization fields
 
-...
+When you localize fields within GraphCMS, the model will be updated to contain the following fields:
+
+| Field           | Type            | Description                                                               |
+| --------------- | --------------- | ------------------------------------------------------------------------- |
+| `locale`        | `Locale!`       | The system locale enumeration for your projects locales. E.g. `en`, `de`. |
+| `localizations` | `[modelName!]!` | An array of localized entries for the model you are querying.             |
+
+Learn more about working with [Localization](/content-api/localization).
 
 ## Connection type fields
 

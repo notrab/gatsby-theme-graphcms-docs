@@ -7,6 +7,14 @@ GraphCMS boasts a flexible localization API that you can use to publish content 
 
 Localized content can be managed through the GraphCMS UI, or via GraphQL mutations.
 
+## Localizing fields
+
+When adding a field that can be localized inside the schema editor, such as a string, mark the field as can be localized, and you will be able to perform all of the localization queries, and mutations outlined below.
+
+![GraphCMS Localize Fields](/images/localize-field.png)
+
+The model will be updated to contain additional [localized system fields](/schema/system-fields#localization-fields) that you can use to fetch localized content.
+
 ## Fetching localized content
 
 Fetching localized content is done by [fetching content](/content-api/queries) the same way you are used to. For example, a product model containing localized fields can be queried like so:
@@ -312,7 +320,7 @@ Just like you can query localized content, you can also create, update, upsert, 
 
 Let's continue with the products model in our examples below. We can use the [auto-generated mutations](/content-api/mutations#auto-generated-mutations) for modifying the locales for each entry.
 
-### Create locales
+### Create a localization
 
 ```graphql
 mutation {
@@ -337,7 +345,7 @@ You'll notice above we are using the `update[Model]` mutation to "create" a loca
 </Alert>
 
 
-### Update locales
+### Update a localization
 
 ```graphql
 mutation {
@@ -350,9 +358,9 @@ mutation {
 }
 ```
 
-### Upsert locales
+### Upsert a localization
 
-Just like you can create, or update content entries by unique filters, you can either also upsert locales. Simply pass the `locale` you want to update, or create if it does not exist.
+Just like you can create, or update content entries by unique filters, you can either also upsert localizations. Simply pass the `locale` you want to update, or create if it does not exist.
 
 ```graphql
 mutation {
@@ -373,9 +381,9 @@ mutation {
 }
 ```
 
-### Delete locales
+### Delete a localization
 
-You can delete all but the default locale using the auto-generated delete mutation.
+You can delete all but the default localization using the auto-generated delete mutation.
 
 ```graphql
 mutation {
