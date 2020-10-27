@@ -1,5 +1,5 @@
-// const resolveConfig = require("tailwindcss/resolveConfig");
-// const tailwindConfig = require("./tailwind.config.js");
+const resolveConfig = require("tailwindcss/resolveConfig");
+const tailwindConfig = require("./tailwind.config.js");
 
 const withThemeOptions = require("./theme-options");
 
