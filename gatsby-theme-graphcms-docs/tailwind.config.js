@@ -1,9 +1,9 @@
 const { fontFamily } = require("tailwindcss/defaultTheme");
 
 module.exports = {
-  purge: {
-    content: ["./src/**/*.{js}"],
-  },
+  // purge: {
+  //   content: ["./src/**/*.{js}"],
+  // },
   dark: "class",
   experimental: {
     darkModeVariant: true,
