@@ -34,18 +34,6 @@ module.exports = {
           900: "#0F0F13",
         },
       },
-      minHeight: {
-        "(screen-16)": "calc(100vh - 4rem)",
-      },
-      maxHeight: {
-        "(screen-16)": "calc(100vh - 4rem)",
-      },
-      spacing: {
-        "(screen-16)": "calc(100vh - 4rem)",
-      },
-      inset: {
-        16: "4rem",
-      },
     },
     typography: (theme) => ({
       default: {

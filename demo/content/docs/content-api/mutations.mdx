@@ -510,7 +510,17 @@ mutation {
 
 ## Publishing mutations
 
+If the models have localized fields, you can greater control the `locales` you want to publish, and if you want to publish the base entry.
+
 ### Publish
+
+| Argument            | Input Tpye                | Description                                                                      |
+| ------------------- | ------------------------- | -------------------------------------------------------------------------------- |
+| `where`             | `ProductWhereUniqueInput` | The content entry you want to publish, using a [filter](/content-api/filtering). |
+| `locales`           | `[Locale!]`               | Optional locales to publish.                                                     |
+| `publishBase`       | `Boolean = true`          | Whether to publish the base content entry.                                       |
+| `withDefaultLocale` | `Boolean = true`          | The                                                                              |
+| `to`                | `[Stage!]! = [PUBLISHED]` | The target published [content stage](/content-api/content-stages).               |
 
 ### Unpublish
 

@@ -15,6 +15,19 @@ Users, Roles & Permissions, Permanent Auth Tokens, and billing will not be clone
 </Alert>
 
 
+## Create an environment
+
+1. Navigate to the Settings tab in the left-hand sidebar in the lower group of icons.
+2. Select "Environments" in the contextual.
+3. Press "Clone" on the Master Environment.
+4. Provide a display name, an environment alias (created automatically if not provided) and toggle whether you'd like to include the content from the master environment.
+
+## Switching environments
+
+You'll first need an additional environment to switch. Once you've more than one, click the "forking" icon in the sidebar, below your project icon. From here you can switch environments.
+
+## Environment endpoints
+
 Each environment has its own API endpoint, with the `alias` of the environment appended to the URL.
 
 API endpoints for both `master` and `dev` environments would follow the format of:
@@ -38,3 +51,10 @@ https://[region].graphcms.com/v2/[projectId]/dev
   </TabsItem>
 </Tabs>
 
+
+## Delete an environment
+
+1. Navigate to the Settings tab in the left-hand sidebar in the lower group of icons.
+2. Select "Environments" in the contextual.
+3. Find the environment you want to delete.
+4. Press the delete button on the environment and confirm you want to delete.
